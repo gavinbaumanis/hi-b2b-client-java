@@ -21,7 +21,7 @@ From the repository root (directory containing **`pom.xml`**):
 mvn -B "-Dgpg.skip=true" clean verify
 ```
 
-This line (**`1.6.5`**) compiles against **`au.gov.nehta:hi-wsdl`** — it does **not** run **`wsimport`**.
+This line (**`1.6.6`**) compiles against **`au.gov.nehta:hi-wsdl`** — it does **not** run **`wsimport`**.
 
 Optional faster local **`verify`** without the Javadoc JAR: **`mvn -B -Pdev-javadoc-off -Dgpg.skip=true clean verify`**.
 

@@ -7,7 +7,7 @@
 | Version | Java | APIs | `Service` stubs |
 | ------- | ---- | ---- | ----------------- |
 | **1.6.3** | 8 | **`javax.xml.ws`**, **`javax.xml.bind`** | **14** (standard HI B2B) |
-| **1.6.5** | 11 | **Jakarta** XML WS / Bind | **14** (standard HI B2B) |
+| **1.6.6** | 11 | **Jakarta** XML WS / Bind | **14** (standard HI B2B) |
 | **1.7.0** | 11 | **Jakarta** XML WS / Bind | **26** (full MCA) |
 
 **Git branch mapping (maintainers / checkout only — do not use in integrator docs):**
@@ -15,19 +15,19 @@
 | Version | Git branch |
 | ------- | ---------- |
 | **1.6.3** | `java-8-javax` |
-| **1.6.5** | `java-11-jakarta` |
+| **1.6.6** | `java-11-jakarta` |
 | **1.7.0** | `java-11-jakarta-full-wsdl` |
 
 **`master`** is frozen and must stay in sync with **`origin/master`** — do not edit; use **`git worktree`** locally.
 
-**This checkout:** **`1.6.5-SNAPSHOT`** (**`1.6.5`** release line).
+**This checkout:** **`1.6.6-SNAPSHOT`** (**`1.6.6`** release line).
 
-## Release scope (`1.6.5`)
+## Release scope (`1.6.6`)
 
 - **Goal:** deliver the standard **14**-stub HI B2B client on **Java 11** with **Jakarta** XML WS / Bind and minimal dependencies.
 - **SOAP types:** **`au.gov.nehta:hi-wsdl`** at **`hi.wsdl.version`** in **`pom.xml`** (published to Maven Central with the Jakarta line). This repository does **not** run in-repo **`wsimport`**.
 - **Licensed WSDL/XSD:** not shipped in the published **`hi-b2b-client`** JAR. Integrators supply the ADHA bundle at runtime via **`HiWsdlArtifactRoot`** (**`HI_WSDL_ARTIFACT_ROOT`**).
-- **API surface:** **14** standard HI B2B facade classes under **`au.gov.nehta.vendorlibrary.hi.*`** (**1.6.5** line).
+- **API surface:** **14** standard HI B2B facade classes under **`au.gov.nehta.vendorlibrary.hi.*`** (**1.6.6** line).
 
 ## Contributors vs release publisher (`pom.xml`)
 
@@ -44,7 +44,7 @@ Publishing uses **`central-publishing-maven-plugin`** (Sonatype Central Portal).
 | Branch | Java | HI client / WSDL version | Facades |
 | ------ | ---- | ------------------------ | ------- |
 | **`java-8-javax`** → **`master`** | 8 / javax | **1.6.3** | 14 |
-| **`java-11-jakarta`** | 11 / Jakarta | **1.6.5** | 14 |
+| **`java-11-jakarta`** | 11 / Jakarta | **1.6.6** | 14 |
 | **`java-11-jakarta-full-wsdl`** | 11 / Jakarta | **1.7.0** | 26 |
 
 Release **`hi-wsdl`** and **`hi-b2b-client`** at the **same GA version** on the matching branch pair before integrators upgrade.
@@ -65,7 +65,7 @@ Run on the **target branch** with a **clean** working tree. The plugin commits v
 mvn -B "-Prelease" release:prepare release:perform -DreleaseVersion=1.7.0 -DdevelopmentVersion=1.7.1-SNAPSHOT -Dtag=hi-b2b-client-1.7.0
 ```
 
-Replace versions and **`-Dtag`** for the branch you are on (**`hi-wsdl-1.6.5`**, **`hi-b2b-client-1.6.3`**, etc.). Omit **`-D…`** only if you accept interactive prompts.
+Replace versions and **`-Dtag`** for the branch you are on (**`hi-wsdl-1.6.6`**, **`hi-b2b-client-1.6.3`**, etc.). Omit **`-D…`** only if you accept interactive prompts.
 
 **After success:** confirm the artifact on Central; repeat on the paired types/client repo. No extra Git steps unless push failed (then **`git push origin <branch>`** and **`git push origin <tag>`**).
 

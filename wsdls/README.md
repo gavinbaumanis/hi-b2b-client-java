@@ -4,7 +4,11 @@ Healthcare Identifier WSDL and XSD files are licensed material from Services Aus
 
 https://healthsoftware.humanservices.gov.au/claiming/ext-vnd/
 
-Extract the bundle to a directory whose immediate children are lowercase **`wsdl/`** and **`schema/`**. Some hosts and CI runners are case-sensitive, so the casing matters. Optional JAX-WS / JAXB binding fragments that this repository does ship live under **`wsdls/xml/binding/`**.
+Extract the bundle to a directory whose immediate children are lowercase **`wsdl/`** and **`schema/`**. Some hosts and CI runners are case-sensitive, so the casing matters.
+
+For Consumer Search IHI (Messages schema **`SearchIHIMessages.xsd`**), request XML must place **`electronicCommunication`** immediately after identity fields and **before** **`dateOfBirth`**. If a vendor pack places that element after demographics or addresses, move it before shipping matching **`hi-wsdl`** types; otherwise batch and related mobile/email search requests can fail schema validation (`badlyFormedMsg`). On this line, SOAP types come from **`au.gov.nehta:hi-wsdl`** (this artifact does not run **`wsimport`**).
+
+Optional JAX-WS / JAXB binding fragments that this repository does ship live under **`wsdls/xml/binding/`**.
 
 See [Configuring the location](#configuring-the-location) below. For building this repository see **CONTRIBUTING.md**; for runtime use of the library see **README.md** at the repository root.
 
@@ -23,7 +27,7 @@ The default Maven lifecycle (**`mvn verify`**) compiles against **`au.gov.nehta:
 
 ### Optional: `hi.wsdl.tree.root` (legacy Ant only)
 
-Used only by optional Ant helpers under **`wsdls/`** (**`build.xml`** and related scripts) if you run them locally. Not used by **`mvn compile`**, **`test`**, **`verify`**, **`package`**, or **`install`** on the **`1.6.5`** line.
+Used only by optional Ant helpers under **`wsdls/`** (**`build.xml`** and related scripts) if you run them locally. Not used by **`mvn compile`**, **`test`**, **`verify`**, **`package`**, or **`install`** on the **`1.6.6`** line.
 
 If set, the value must be a directory whose immediate children are **`wsdl/`** and **`schema/`**. Resolution order (first match wins):
 
@@ -55,7 +59,7 @@ Two template files ship in Git at the project root, beside **`pom.xml`**:
 
 | File | Purpose |
 | ---- | ------- |
-| **`settings.xml.example`** | Optional Maven user settings fragment; documents **`hi.wsdl.tree.root`** for legacy Ant tooling parity. Not required for **`mvn verify`** on the **`1.6.5`** line. |
+| **`settings.xml.example`** | Optional Maven user settings fragment; documents **`hi.wsdl.tree.root`** for legacy Ant tooling parity. Not required for **`mvn verify`** on the **`1.6.6`** line. |
 | **`local.properties.example`** | Runtime / test configuration template; documents **`HI_WSDL_ARTIFACT_ROOT`** and the **`HI_*`** keys (keystore, truststore, endpoints, product / vendor identifiers) used by integration tests and by **`HiWsdlArtifactRoot`**. |
 
 Both files are **templates**. Copy and edit locally; do not commit populated copies:

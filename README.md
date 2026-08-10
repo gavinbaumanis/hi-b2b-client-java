@@ -31,11 +31,11 @@ Add the artifact from [Maven Central](https://central.sonatype.com/). Use a **`<
 <dependency>
   <groupId>au.gov.nehta</groupId>
   <artifactId>hi-b2b-client</artifactId>
-  <version>1.6.5</version>
+  <version>1.6.6</version>
 </dependency>
 ```
 
-**This line (`1.6.5`):** Java **11**, **Jakarta** XML Web Services / JAXB, **14** standard HI B2B facade clients. Transitive runtime includes **`com.sun.xml.ws:jaxws-rt`** **4.0.4**.
+**This line (`1.6.6`):** Java **11**, **Jakarta** XML Web Services / JAXB, **14** standard HI B2B facade clients. Transitive runtime includes **`com.sun.xml.ws:jaxws-rt`** **4.0.4**.
 
 ---
 
@@ -43,13 +43,13 @@ Add the artifact from [Maven Central](https://central.sonatype.com/). Use a **`<
 
 | Version | Java | APIs | Facade clients |
 | ------- | ---- | ---- | -------------- |
-| **1.6.3** | 8 | **`javax.xml.ws`**, **`javax.xml.bind`** | **14** (standard HI B2B) |
-| **1.6.5** | 11 | **Jakarta** XML WS / Bind | **14** (standard HI B2B) |
-| **1.7.0** | 11 | **Jakarta** XML WS / Bind | **26** (full MCA) |
+| **1.6.4** | 8 | **`javax.xml.ws`**, **`javax.xml.bind`** | **14** (standard HI B2B) |
+| **1.6.6** | 11 | **Jakarta** XML WS / Bind | **14** (standard HI B2B) |
+| **1.7.1** | 11 | **Jakarta** XML WS / Bind | **26** (full MCA) |
 
 All published versions are on **[Maven Central](https://central.sonatype.com/)**.
 
-SOAP application code on **`1.6.5`** uses **`jakarta.xml.ws`**, **`jakarta.xml.bind`**, and related Jakarta APIs. Java SE types such as **`javax.net.ssl`** and **`javax.xml.datatype.XMLGregorianCalendar`** are unchanged. SOAP types come from **`au.gov.nehta:hi-wsdl`** at the same version when both artifacts are on the classpath.
+SOAP application code on **`1.6.6`** uses **`jakarta.xml.ws`**, **`jakarta.xml.bind`**, and related Jakarta APIs. Java SE types such as **`javax.net.ssl`** and **`javax.xml.datatype.XMLGregorianCalendar`** are unchanged. SOAP types come from **`au.gov.nehta:hi-wsdl`** at the same version when both artifacts are on the classpath.
 
 ---
 
@@ -110,7 +110,7 @@ Copy **`local.properties.example`** to **`local.properties`**, fill in values, a
 
 ## Client classes
 
-Package base: **`au.gov.nehta.vendorlibrary.hi`**. This artifact (**1.6.5**) exposes **14** standard HI B2B facade classes.
+Package base: **`au.gov.nehta.vendorlibrary.hi`**. This artifact (**1.6.6**) exposes **14** standard HI B2B facade classes.
 
 | Area | Classes |
 | ---- | ------- |

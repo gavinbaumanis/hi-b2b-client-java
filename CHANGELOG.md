@@ -1,5 +1,9 @@
 # Change Log/Revision History
 
+= 1.6.6 =
+======
+- **`HiRequestElementOrderParityTest`**: asserts JAXB `propOrder` for Messages `searchIHI` and batch `SearchIHIRequestType`. Pair with **`au.gov.nehta:hi-wsdl`** **`1.6.6`** (`electronicCommunication` before `dateOfBirth` on Messages `searchIHI`). See **`wsdls/README.md`**.
+
 = 1.6.5-SNAPSHOT =
 ======
 Changes not yet assigned to a numbered release; **`pom.xml`** **`<version>`** is **`1.6.5-SNAPSHOT`** until release **1.6.5** is tagged.
