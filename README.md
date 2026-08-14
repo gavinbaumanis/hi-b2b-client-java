@@ -31,11 +31,11 @@ Add the artifact from [Maven Central](https://central.sonatype.com/). Use a **`<
 <dependency>
   <groupId>au.gov.nehta</groupId>
   <artifactId>hi-b2b-client</artifactId>
-  <version>1.6.3</version>
+  <version>1.6.4</version>
 </dependency>
 ```
 
-**This line (`1.6.3`):** Java **8**, **`javax.xml.ws`** / **`javax.xml.bind`**, **14** standard HI B2B facade clients. Add **`com.sun.xml.ws:jaxws-rt`** **2.3.7** at runtime in your application.
+**This line (`1.6.4`):** Java **8**, **`javax.xml.ws`** / **`javax.xml.bind`**, **14** standard HI B2B facade clients. Add **`com.sun.xml.ws:jaxws-rt`** **2.3.7** at runtime in your application.
 
 ---
 
@@ -43,13 +43,13 @@ Add the artifact from [Maven Central](https://central.sonatype.com/). Use a **`<
 
 | Version | Java | APIs | Facade clients |
 | ------- | ---- | ---- | -------------- |
-| **1.6.3** | 8 | **`javax.xml.ws`**, **`javax.xml.bind`** | **14** (standard HI B2B) |
-| **1.6.5** | 11 | **Jakarta** XML WS / Bind | **14** (standard HI B2B) |
-| **1.7.0** | 11 | **Jakarta** XML WS / Bind | **26** (full MCA) |
+| **1.6.4** | 8 | **`javax.xml.ws`**, **`javax.xml.bind`** | **14** (standard HI B2B) |
+| **1.6.6** | 11 | **Jakarta** XML WS / Bind | **14** (standard HI B2B) |
+| **1.7.1** | 11 | **Jakarta** XML WS / Bind | **26** (full MCA) |
 
 All published versions are on **[Maven Central](https://central.sonatype.com/)**.
 
-SOAP application code on **`1.6.3`** uses **`javax.xml.ws`**, **`javax.xml.bind`**, and related **`javax`** APIs. SOAP types come from **`au.gov.nehta:hi-wsdl`** at the same version when both artifacts are on the classpath.
+SOAP application code on **`1.6.4`** uses **`javax.xml.ws`**, **`javax.xml.bind`**, and related **`javax`** APIs. SOAP types come from **`au.gov.nehta:hi-wsdl`** at the same version when both artifacts are on the classpath.
 
 ---
 
@@ -110,7 +110,7 @@ Copy **`local.properties.example`** to **`local.properties`**, fill in values, a
 
 ## Client classes
 
-Package base: **`au.gov.nehta.vendorlibrary.hi`**. This artifact line (**1.6.3**) exposes **14** standard HI B2B facade classes. Full MCA coverage (**26** stubs) is version **1.7.0**.
+Package base: **`au.gov.nehta.vendorlibrary.hi`**. This artifact line (**1.6.4**) exposes **14** standard HI B2B facade classes. Full MCA coverage (**26** stubs) is version **1.7.1**.
 
 | Area | Classes |
 | ---- | ------- |
@@ -136,7 +136,7 @@ Samples under **`src/sample/java`** (`...hi.sample`) are not on the default clas
 
 Address searches (`australianPostalAddressSearch`, `australianStreetAddressSearch`, `internationalAddressSearch`) also require **`ihiNumber`** to be unset. Use **`detailedSearch`** for demographics-only lookup, not **`basicSearch`**.
 
-Batch sync/async clients apply the same rules in **`SearchBatch.ArgumentValidator`**.
+IHI **sync** batch (`ConsumerSearchIHIBatchSyncClient` / `SearchBatch`) applies the same field rules in **`SearchBatch.ArgumentValidator`**.
 
 ---
 

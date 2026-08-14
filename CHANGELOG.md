@@ -1,5 +1,12 @@
 # Change Log/Revision History
 
+= 1.6.4 =
+======
+- **`HiRequestElementOrderParityTest`**: asserts JAXB `propOrder` for Messages `searchIHI` (`electronicCommunication` before `dateOfBirth`), Interface inquiry `searchIHI`, and batch `SearchIHIRequestType`. Pair with **`au.gov.nehta:hi-wsdl`** **`1.6.4`**. See **`wsdls/readme.txt`**.
+- IHI sync batch and HPI batch-async facades reject a null request (and a null per-request user id) with **`IllegalArgumentException`**.
+- **`BaseClient_3`** constructor names the signing-certificate argument **`signingCertificate`**.
+- README: IHI **sync** batch (`SearchBatch.ArgumentValidator`) uses the same search-field rules as `ConsumerSearchIHIClient`.
+
 = 1.6.3-SNAPSHOT =
 ======
 Changes not yet assigned to a numbered release; **`pom.xml`** **`<version>`** is **`1.6.3-SNAPSHOT`** until release **1.6.3** is tagged.
