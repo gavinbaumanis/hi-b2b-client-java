@@ -4,46 +4,43 @@
 
 ## Release lines
 
-| Version | Java | APIs | `Service` stubs |
-| ------- | ---- | ---- | ----------------- |
-| **1.6.4** | 8 | **`javax.xml.ws`**, **`javax.xml.bind`** | **14** (standard HI B2B) |
-| **1.6.5** | 11 | **Jakarta** XML WS / Bind | **14** (standard HI B2B) |
-| **1.7.1** | 11 | **Jakarta** XML WS / Bind | **26** (full MCA) |
+**Documentation convention:** README, CONTRIBUTING, CHANGELOG, and integrator-facing text use **version numbers only** - never Git branch names.
 
-**Git branch mapping (maintainers / checkout only — do not use in integrator docs):**
+| Version | Java | APIs | Facade clients |
+| ------- | ---- | ---- | -------------- |
+| **1.6.4.1** | 8 | **`javax.xml.ws`**, **`javax.xml.bind`** | **14** (standard HI B2B) |
+| **1.7.1.1** | 11 | **Jakarta** XML WS / Bind | **26** (full MCA) |
 
-| Version | Git branch |
-| ------- | ---------- |
-| **1.6.4** | `java-8-javax` |
-| **1.6.5** | `java-11-jakarta` |
-| **1.7.1** | `java-11-jakarta-full-wsdl` |
+**Git branch mapping (maintainers / checkout only - do not use in integrator docs):**
 
-**`master`** is frozen and must stay in sync with **`origin/master`** — do not edit; use **`git worktree`** locally (**`CONTRIBUTING.md`**).
+| Version | Official Git branch |
+| ------- | ------------------- |
+| **1.6.4.1** | `master` |
+| **1.7.1.1** | `java-11` |
 
-**This checkout:** **`1.6.4-SNAPSHOT`** (**`1.6.4`** release line).
+**This 1.6.4.1 line (`1.6.4.1-SNAPSHOT`):** Java **8**, **14** facades, types from **`au.gov.nehta:hi-wsdl`** at **`${project.version}`** (no in-repo **`wsimport`**). **`hi-b2b-client`** **1.6.4.1** uses **`hi-wsdl`** at the **same version**.
 
-## Release scope (`1.6.4`)
+## Release scope (`1.6.4.1`)
 
-- **Goal:** Java **8** bytecode (`maven.compiler.release` **8**) with **`javax.xml.ws`** / JAXB usage in application code; SOAP types **`au.net.electronichealth.*`** come from **`au.gov.nehta:hi-wsdl`** on the classpath ( **`hi.wsdl.version`** ). The default lifecycle does **not** run **`wsimport`** in this artifact.
+- **Goal:** Java **8** bytecode (`maven.compiler.release` **8**) with **`javax.xml.ws`** / JAXB usage in application code; SOAP types **`au.net.electronichealth.*`** come from **`au.gov.nehta:hi-wsdl`** on the classpath (**`hi.wsdl.version`**). The default lifecycle does **not** run **`wsimport`** in this artifact.
 - **`wsdls/`** is optional reference and Ant **`wsimport`** material (see **`wsdls/readme.txt`**), not required to compile this library.
 
 ## Contributors vs release publisher (`pom.xml`)
 
 **Contributors (PRs, ordinary commits):** Do not change **`<version>`** (stay on **`-SNAPSHOT`** unless the maintainer requests a bump), **`<scm><tag>`**, or **`distributionManagement`**. Leave **`maven-gpg-plugin`** **`skip`** **`true`** so default **`mvn verify`** does not require a signing key. Record user-visible work under **`CHANGELOG.md`** in the **`= <pom-version> =`** block that matches **`pom.xml`** **`<version>`**.
 
-**Release publisher:** In the release change set: set **`<version>`** to the GA coordinate (no **`-SNAPSHOT`**); set **`<scm><tag>`** to the Git tag you will publish (match existing tag naming). Move **`CHANGELOG.md`** bullets from the snapshot section into a new **`= <GA-version> =`** section; add a fresh **`-SNAPSHOT`** block for the next development cycle. Deploy via Sonatype Central Portal (**`central-publishing-maven-plugin`**; copy **`settings.xml.example`** → **`settings.xml`**, server id **`central`**). See **Release** below.
+**Release publisher:** In the release change set: set **`<version>`** to the GA coordinate (no **`-SNAPSHOT`**); set **`<scm><tag>`** to the Git tag you will publish (match existing tag naming). Move **`CHANGELOG.md`** bullets from the snapshot section into a new **`= <GA-version> =`** section; add a fresh **`-SNAPSHOT`** block for the next development cycle. Deploy via Sonatype Central Portal (**`central-publishing-maven-plugin`**; copy **`settings.xml.example`** -> **`settings.xml`**, server id **`central`**). See **Release** below.
 
 ## Release
 
-Publishing uses **`central-publishing-maven-plugin`** (Sonatype Central Portal). Copy **`settings.xml.example`** → **`settings.xml`**, server id **`central`**.
+Publishing uses **`central-publishing-maven-plugin`** (Sonatype Central Portal). Copy **`settings.xml.example`** -> **`settings.xml`**, server id **`central`**.
 
-**Parallel release lines (maintainers only):** each Git branch publishes a **different Maven version** — integrators choose by coordinate, not branch name.
+**Parallel release lines (maintainers only):** each Git branch publishes a **different Maven version** - integrators choose by coordinate, not branch name.
 
 | Branch | Java | HI client / WSDL version | Facades |
 | ------ | ---- | ------------------------ | ------- |
-| **`java-8-javax`** → **`master`** | 8 / javax | **1.6.4** | 14 |
-| **`java-11-jakarta`** | 11 / Jakarta | **1.6.5** | 14 |
-| **`java-11-jakarta-full-wsdl`** | 11 / Jakarta | **1.7.1** | 26 |
+| **`master`** | 8 / javax | **1.6.4.1** | 14 |
+| **`java-11`** | 11 / Jakarta | **1.7.1.1** | 26 |
 
 Release **`hi-wsdl`** and **`hi-b2b-client`** at the **same GA version** on the matching branch pair before integrators upgrade.
 
@@ -53,19 +50,19 @@ Release **`hi-wsdl`** and **`hi-b2b-client`** at the **same GA version** on the 
 2. **`mvn -B "-Prelease" clean verify`**
 3. **`mvn -B "-Prelease" deploy`**
 
-Git/SCM settings for **`maven-release-plugin`** live in **`pom.xml`** properties (**`scm.repo.url`**, **`release.*`**). Tags default to **`{artifactId}-{version}`** (e.g. **`hi-b2b-client-1.7.0`**).
+Git/SCM settings for **`maven-release-plugin`** live in **`pom.xml`** properties (**`scm.repo.url`**, **`release.*`**). Tags default to **`{artifactId}-{version}`** (e.g. **`hi-b2b-client-1.6.4.1`**).
 
 ### Automated GA (`maven-release-plugin`)
 
 Run on the **target branch** with a **clean** working tree. The plugin commits version bumps, creates the release tag, deploys from the tag checkout, bumps to the next **`-SNAPSHOT`**, and **pushes branch + tag** (**`pushChanges`** / **`remoteTagging`** in **`pom.xml`**). Git remote credentials (SSH or HTTPS) must work non-interactively.
 
 ```text
-mvn -B "-Prelease" release:prepare release:perform -DreleaseVersion=1.7.0 -DdevelopmentVersion=1.7.1-SNAPSHOT -Dtag=hi-b2b-client-1.7.0
+mvn -B "-Prelease" release:prepare release:perform -DreleaseVersion=1.6.4.1 -DdevelopmentVersion=1.6.4.2-SNAPSHOT -Dtag=hi-b2b-client-1.6.4.1
 ```
 
-Replace versions and **`-Dtag`** for the branch you are on (**`hi-wsdl-1.6.5`**, **`hi-b2b-client-1.6.4`**, etc.). Omit **`-D…`** only if you accept interactive prompts.
+Replace versions and **`-Dtag`** for the branch you are on (**`hi-wsdl-1.6.4.1`**, **`hi-b2b-client-1.7.1.1`**, etc.). Omit **`-D...`** only if you accept interactive prompts.
 
-**After success:** confirm the artifact on Central; repeat on the paired types/client repo. No extra Git steps unless push failed (then **`git push origin <branch>`** and **`git push origin <tag>`**).
+**After success:** confirm the artifact on Central; repeat on the paired types/client repo. No extra Git steps unless push failed (then **`git push origin master`** or **`git push origin java-11`** and **`git push origin <tag>`**).
 
 **`-Dgpg.skip=false`** is equivalent to **`-Prelease`** for signing.
 
@@ -77,8 +74,12 @@ Replace versions and **`-Dtag`** for the branch you are on (**`hi-wsdl-1.6.5`**,
 
 - **`maven.compiler.release` 8** - bytecode and language level for Java 8 consumers.
 - **`ee4j.jaxws.version`** - **`com.sun.xml.ws:jaxws-rt`** on **Maven Central** (**2.3.7** is the last **2.3.x** for this branch). Transitive API JARs may use **`jakarta.*`** **groupId** coordinates while still exposing **`javax.*`** packages - do not exclude them from **`jaxws-rt`** in consumer POMs. This project only excludes **`webservices-rt`** from **`common-library`** (old stack conflict with **`jaxws-rt`**).
-- **`hi.wsdl.version`** — **`${project.version}`** (same SNAPSHOT or GA as **`hi-b2b-client`**); **`mvn install`** in **`hi-wsdl-java`** before unpublished **`verify`**; coordinate GA releases with **`hi-wsdl-java`**.
+- **`hi.wsdl.version`** - **`${project.version}`** (same SNAPSHOT or GA as **`hi-b2b-client`**); **`mvn install`** in **`hi-wsdl-java`** before unpublished **`verify`**; coordinate GA releases with **`hi-wsdl-java`**.
 - **`nehta.lib.version`** - **`au.gov.nehta:common-library`** and explicit **`au.gov.nehta:smi-xsp`** ( **`smi-common-utils`** removed; **`ArgumentUtils`** and **`CertificateValidator`** come from **`smi-xsp`** / **`common-library`** transitives).
+
+## Default tests
+
+Default Surefire **`<includes>`** (see **`pom.xml`**): **`TimeUtilityTest`**, **`TestConfigurationTest`**, **`HiWsdlArtifactRootTest`**, **`HiRequestElementOrderParityTest`**, **`ConsumerSearchIHIClientArgumentValidatorTest`**. **`-Pintegration`** runs mutual-TLS tests with **`local.properties`** / **`HI_*`**.
 
 ## Fast builds
 
