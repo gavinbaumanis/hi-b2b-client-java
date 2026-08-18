@@ -97,11 +97,13 @@
         <plugin.build.helper.version>3.6.1</plugin.build.helper.version>
         <plugin.gpg.version>3.2.8</plugin.gpg.version>
         <jacoco.version>0.8.14</jacoco.version>
-        <nehta.lib.version>1.2.1</nehta.lib.version>
-		<nehta.xsp.lib.version>1.2.1</nehta.xsp.lib.version>
         <maven.shade.plugin.version>3.6.2</maven.shade.plugin.version>
+
         <!-- Same version as this artifact (SNAPSHOT during dev; GA at release). See README local development. -->
         <hi.wsdl.version>${project.version}</hi.wsdl.version>
+        <nehta.lib.version>1.2.2</nehta.lib.version>
+		<nehta.xsp.lib.version>1.2.1</nehta.xsp.lib.version>
+
         <plugin.jar.version>3.5.0</plugin.jar.version>
         <plugin.enforcer.version>3.6.2</plugin.enforcer.version>
         <!-- Surefire JVM heap; JaCoCo profile prepends the agent via prepare-agent when -Pcoverage is active. -->
