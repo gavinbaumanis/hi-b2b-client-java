@@ -21,7 +21,7 @@ From the repository root (directory containing **`pom.xml`**):
 mvn -B "-Dgpg.skip=true" clean verify
 ```
 
-This line (**`1.6.3`**) compiles against **`au.gov.nehta:hi-wsdl`** — it does **not** run **`wsimport`**.
+This line (**`1.6.4.1`**) compiles against **`au.gov.nehta:hi-wsdl`** - it does **not** run **`wsimport`**.
 
 Optional faster local **`verify`** without the Javadoc JAR: **`mvn -B -Pdev-javadoc-off -Dgpg.skip=true clean verify`**.
 
@@ -47,7 +47,7 @@ Set environment variable **`MVN_SETTINGS`** to pass **`-s`** to Maven (path to y
 
 ## Local builds (unpublished artifacts)
 
-When co-developing with **`hi-wsdl-java`**, install matching **`au.gov.nehta:hi-wsdl`** at **`${project.version}`** before **`verify`** here:
+When co-developing with **`hi-wsdl-java`**, install matching **`au.gov.nehta:hi-wsdl`** at **`${project.version}`** before **`verify`** here (**1.6.4.1** with **1.6.4.1** on this line; **1.7.1.1** with **1.7.1.1** on **`java-11`**):
 
 ```text
 # hi-wsdl (same SNAPSHOT or GA as this pom.xml)

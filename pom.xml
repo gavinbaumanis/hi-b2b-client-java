@@ -9,7 +9,7 @@
 
     <groupId>au.gov.nehta</groupId>
     <artifactId>hi-b2b-client</artifactId>
-    <version>1.6.5-SNAPSHOT</version>
+    <version>1.6.4.1-SNAPSHOT</version>
     <name>HI B2B client</name>
     <description>Example client implementations of Healthcare Identifiers (HI) service</description>
     <url>https://github.com/AuDigitalHealth/hi-b2b-client-java</url>
@@ -263,6 +263,7 @@
                         <include>**/TestConfigurationTest.java</include>
                         <include>**/HiWsdlArtifactRootTest.java</include>
                         <include>**/ConsumerSearchIHIClientArgumentValidatorTest.java</include>
+                        <include>**/HiRequestElementOrderParityTest.java</include>
                     </includes>
                 </configuration>
             </plugin>
