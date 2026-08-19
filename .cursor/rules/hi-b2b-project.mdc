@@ -11,21 +11,29 @@ Healthcare Identifiers (HI) B2B facade client - **not** MHR/PCEHR.
 
 Follow **`documentation-standards.mdc`**. Integrator docs use **version numbers** - not Git branch names.
 
+The **first number** of the Maven version is the **Java SE** target. **`hi-b2b-client`** and **`hi-wsdl`** always share the **same** version.
+
 | Version | Java | APIs | Facades |
 | ------- | ---- | ---- | ------- |
-| **1.6.4.1** | 8 | **javax** | **14** (standard HI B2B) |
-| **1.7.1.1** | 11 | **Jakarta** | **26** (full MCA) |
+| **8.0.0.1** | 8 | **javax** | **14** (standard HI B2B) |
+| **11.0.0.1** | 11 | **Jakarta** | **26** (full MCA) |
+| **17.0.0.1** | 17 | **Jakarta** | **26** (full MCA) |
+| **21.0.0.1** | 21 | **Jakarta** | **26** (full MCA) |
+| **24.0.0.1** | 24 | **Jakarta** | **26** (full MCA) |
 
 **Git branch mapping (maintainers only - never in integrator docs):**
 
 | Version | Official Git branch |
 | ------- | ------------------- |
-| **1.6.4.1** | `master` |
-| **1.7.1.1** | `java-11` |
+| **8.0.0.1** | `java-8` |
+| **11.0.0.1** | `java-11` |
+| **17.0.0.1** | `java-17` |
+| **21.0.0.1** | `java-21` |
+| **24.0.0.1** | `java-24` |
 
-## This 1.6.4.1 line
+## This 8.0.0.1 line
 
-**`1.6.4.1-SNAPSHOT`**: Java **8**, **`javax`**, **14** facades, types from **`au.gov.nehta:hi-wsdl`** at **`${project.version}`** (no in-repo **`wsimport`**). See **MAINTAINERS.md**.
+**`8.0.0.1-SNAPSHOT`**: Java **8**, **`javax`**, **14** facades, types from **`au.gov.nehta:hi-wsdl`** at **`${project.version}`** (no in-repo **`wsimport`**). See **MAINTAINERS.md**.
 
 ## Build from source
 
@@ -47,7 +55,7 @@ Follow **`documentation-standards.mdc`**. Integrator docs use **version numbers*
 | Delivers | WSDL on classpath + generated types | Facade clients, TLS, signing |
 | Artifact | `hi-wsdl` | `hi-b2b-client` |
 
-Align **`hi-wsdl`** and **`hi-b2b-client`** at the **same version** per release line (**1.6.4.1** with **1.6.4.1**, **1.7.1.1** with **1.7.1.1**).
+Align **`hi-wsdl`** and **`hi-b2b-client`** at the **same version** per release line (**8.0.0.1** with **8.0.0.1**, **11.0.0.1** with **11.0.0.1**, and so on).
 
 ## Doc split
 

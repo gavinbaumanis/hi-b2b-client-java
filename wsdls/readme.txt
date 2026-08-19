@@ -14,8 +14,9 @@ For Consumer Search IHI (Messages schema SearchIHIMessages.xsd), request XML mus
 electronicCommunication immediately after identity fields and before dateOfBirth. If a vendor
 pack places that element after demographics or addresses, move it before regenerating types
 (or before shipping matching hi-wsdl types); otherwise batch and related mobile/email search
-requests can fail schema validation (badlyFormedMsg). On this Java 8 line, SOAP types come
-from au.gov.nehta:hi-wsdl (this artifact does not run wsimport).
+requests can fail schema validation (badlyFormedMsg). On this Java 8 line (Maven **8.0.0.1**),
+SOAP types come from au.gov.nehta:hi-wsdl at the same version (this artifact does not run
+wsimport). The first number of both Maven versions is the targeted Java SE version.
 
 Optional JAX-WS / JAXB binding fragments that this repository does ship live under
 wsdls/xml/binding/.

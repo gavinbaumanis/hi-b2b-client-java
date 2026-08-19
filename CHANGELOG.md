@@ -1,8 +1,8 @@
 # Change Log/Revision History
 
-= 1.6.4.1 =
-=========
-- Maven **`au.gov.nehta:hi-b2b-client`** **1.6.4.1** (Java **8** / **`javax`**, **14** facade clients). Pair with **`hi-wsdl`** **1.6.4.1**.
+= 8.0.0.1 =
+=======
+- Maven **`au.gov.nehta:hi-b2b-client`** **8.0.0.1** (Java **8** / **`javax`**, **14** facade clients). Pair with **`hi-wsdl`** **8.0.0.1**. The first number of both Maven versions is the targeted Java SE version.
 - **`HiRequestElementOrderParityTest`**: asserts JAXB `propOrder` for Messages `searchIHI` (`electronicCommunication` before `dateOfBirth`), Interface inquiry `searchIHI`, and batch `SearchIHIRequestType`. See **`wsdls/readme.txt`**.
 - IHI sync batch and HPI batch-async facades reject a null request (and a null per-request user id) with **`IllegalArgumentException`**.
 - **`BaseClient_3`** constructor names the signing-certificate argument **`signingCertificate`**.

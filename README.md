@@ -25,32 +25,41 @@ Registration: https://implementer.digitalhealth.gov.au/resources/hi-service-regi
 
 ## Dependency
 
-Add the artifact from [Maven Central](https://central.sonatype.com/). Use a **`<version>`** that matches your JDK and API stack (see **Release lines**).
+Add the artifact from [Maven Central](https://central.sonatype.com/). Use a **`<version>`** that matches your JDK (see **Versioning**).
 
 ```xml
 <dependency>
   <groupId>au.gov.nehta</groupId>
   <artifactId>hi-b2b-client</artifactId>
-  <version>1.6.4.1</version>
+  <version>8.0.0.1</version>
 </dependency>
 ```
 
-**This line (`1.6.4.1`):** Java **8**, **`javax.xml.ws`** / **`javax.xml.bind`**, **14** standard HI B2B facade clients. Add **`com.sun.xml.ws:jaxws-rt`** **2.3.7** at runtime in your application.
+**This line (`8.0.0.1`):** Java **8**, **`javax.xml.ws`** / **`javax.xml.bind`**, **14** standard HI B2B facade clients. Add **`com.sun.xml.ws:jaxws-rt`** **2.3.7** at runtime in your application. Pair with **`au.gov.nehta:hi-wsdl`** **`8.0.0.1`**.
 
 ---
 
-## Release lines
+## Versioning
 
-Use **version numbers** in documentation and dependencies - not Git branch names.
+The **first number** of the Maven version is the **Java SE** version that line targets. **`hi-b2b-client`** and **`hi-wsdl`** always use the **same** version on a given line (same SNAPSHOT or GA).
 
-| Version | Java | APIs | Facade clients |
-| ------- | ---- | ---- | -------------- |
-| **1.6.4.1** | 8 | **`javax.xml.ws`**, **`javax.xml.bind`** | **14** (standard HI B2B) |
-| **1.7.1.1** | 11 | **Jakarta** XML WS / Bind | **26** (full MCA) |
+| Maven version | Java SE | APIs | Facade clients |
+| ------------- | ------- | ---- | -------------- |
+| **8.0.0.1** | **8** | **`javax.xml.ws`**, **`javax.xml.bind`** | **14** (standard HI B2B) |
+| **11.0.0.1** | **11** | **Jakarta** XML WS / Bind | **26** (full MCA) |
+| **17.0.0.1** | **17** | **Jakarta** XML WS / Bind | **26** (full MCA) |
+| **21.0.0.1** | **21** | **Jakarta** XML WS / Bind | **26** (full MCA) |
+| **24.0.0.1** | **24** | **Jakarta** XML WS / Bind | **26** (full MCA) |
 
-All published versions are on **[Maven Central](https://central.sonatype.com/)**. Align **`hi-wsdl`** and **`hi-b2b-client`** at the **same version** when both are on the classpath (**1.6.4.1** with **1.6.4.1**, **1.7.1.1** with **1.7.1.1**).
+Pick the coordinate that matches your JDK. Do not mix **`hi-b2b-client`** and **`hi-wsdl`** versions. All published versions are on **[Maven Central](https://central.sonatype.com/)**.
 
-SOAP application code on **`1.6.4.1`** uses **`javax.xml.ws`**, **`javax.xml.bind`**, and related **`javax`** APIs. SOAP types come from **`au.gov.nehta:hi-wsdl`** at the same version when both artifacts are on the classpath.
+---
+
+## Note
+
+The **8.0.0.1** release does not support the full WSDL specification (**14** facades, **`javax`**). **11.0.0.1** and later lines use **Jakarta** and expose all **26** facades.
+The current state of the **8.0.0.1** line is the original implementation, minimally updated to allow a successful build.
+Java 8 is no longer a supported platform and users of this client should upgrade to a current Java LTS version.
 
 ---
 
@@ -111,7 +120,7 @@ Copy **`local.properties.example`** to **`local.properties`**, fill in values, a
 
 ## Client classes
 
-Package base: **`au.gov.nehta.vendorlibrary.hi`**. This artifact line (**1.6.4.1**) exposes **14** standard HI B2B facade classes. Full MCA coverage (**26** facades) is version **1.7.1.1** - see **`CLIENT-FEATURES.md`** and **`WSDL-CLIENT-PURPOSES.md`**.
+Package base: **`au.gov.nehta.vendorlibrary.hi`**. This artifact line (**8.0.0.1**) exposes **14** standard HI B2B facade classes. Full MCA coverage (**26** facades, **Jakarta** XML WS / Bind) is available from **11.0.0.1** onward - see **`CLIENT-FEATURES.md`** and **`WSDL-CLIENT-PURPOSES.md`**.
 
 | Area | Classes |
 | ---- | ------- |
