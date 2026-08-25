@@ -17,7 +17,7 @@ The **first number** of the Maven version is the **Java SE** target. **`hi-b2b-c
 | ------------ | ---- | ----------- | ------------------------ |
 | **8.0.0**    | 8    | **javax**   | **14** (standard HI B2B) |
 | **11.0.0**   | 11   | **Jakarta** | **26** (full MCA)        |
-| **17.0.0.1** | 17   | **Jakarta** | **26** (full MCA)        |
+| **17.0.0**   | 17   | **Jakarta** | **26** (full MCA)        |
 | **21.0.0.1** | 21   | **Jakarta** | **26** (full MCA)        |
 | **24.0.0.1** | 24   | **Jakarta** | **26** (full MCA)        |
 
@@ -27,19 +27,19 @@ The **first number** of the Maven version is the **Java SE** target. **`hi-b2b-c
 | ------------ | ------------------- |
 | **8.0.0**    | `java-8`            |
 | **11.0.0**   | `java-11`           |
-| **17.0.0.1** | `java-17`           |
+| **17.0.0**   | `java-17`           |
 | **21.0.0.1** | `java-21`           |
 | **24.0.0.1** | `java-24`           |
 
-## This 11.0.0 line
+## This 17.0.0 line
 
-**`11.0.0-SNAPSHOT`**: Java **11**, **Jakarta**, **26** facades, in-repo **`wsimport`** when building from source (licensed tree at **`wsdls/xml/`**), or **`-Phi-wsdl-artifact`** with **`au.gov.nehta:hi-wsdl`** at **`${project.version}`**. See **MAINTAINERS.md**.
+**`17.0.0-SNAPSHOT`**: Java **17**, **Jakarta**, **26** facades, in-repo **`wsimport`** when building from source (licensed tree at **`wsdls/xml/`**), or **`-Phi-wsdl-artifact`** with **`au.gov.nehta:hi-wsdl`** at **`${project.version}`**. See **MAINTAINERS.md**.
 
 ## Build from source
 
-- JDK **11**: `mvn -B "-Dgpg.skip=true" clean verify` (quote `-D` on PowerShell). Licensed **`wsdls/xml/`** required unless **`-Phi-wsdl-artifact`**.
+- JDK **17**: `mvn -B "-Dgpg.skip=true" clean verify` (quote `-D` on PowerShell). Licensed **`wsdls/xml/`** required unless **`-Phi-wsdl-artifact`**.
 - **Local / unpublished:** install matching **`hi-wsdl`** then **`-Phi-wsdl-artifact verify`** - see **`CONTRIBUTING.md`**
-- **`jaxws-rt` 4.0.5**
+- **`jaxws-rt` 4.0.5**; **`jaxws-maven-plugin` 4.0.5**
 - Default Surefire: offline tests; **`-Pintegration`** for mutual-TLS
 
 ## Consumer Search IHI
@@ -55,7 +55,7 @@ The **first number** of the Maven version is the **Java SE** target. **`hi-b2b-c
 | Delivers | WSDL on classpath + generated types | Facade clients, TLS, signing |
 | Artifact | `hi-wsdl`                           | `hi-b2b-client`              |
 
-Align **`hi-wsdl`** and **`hi-b2b-client`** at the **same version** per release line (**8.0.0** with **8.0.0**, **11.0.0** with **11.0.0**, and so on).
+Align **`hi-wsdl`** and **`hi-b2b-client`** at the **same version** per release line (**8.0.0** with **8.0.0**, **11.0.0** with **11.0.0**, **17.0.0** with **17.0.0**, and so on).
 
 ## Doc split
 

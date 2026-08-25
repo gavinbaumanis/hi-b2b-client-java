@@ -9,7 +9,7 @@
 
     <groupId>au.gov.nehta</groupId>
     <artifactId>hi-b2b-client</artifactId>
-    <version>11.0.0-SNAPSHOT</version>
+    <version>17.0.0-SNAPSHOT</version>
     <name>HI B2B client</name>
     <description>Example client implementations of Healthcare Identifiers (HI) service</description>
     <url>https://github.com/AuDigitalHealth/hi-b2b-client-java</url>
@@ -55,7 +55,7 @@
     </distributionManagement>
 
     <properties>
-        <maven.compiler.release>11</maven.compiler.release>
+        <maven.compiler.release>17</maven.compiler.release>
         <encoding>UTF-8</encoding>
         <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
@@ -79,9 +79,9 @@
         <release.pushChanges>true</release.pushChanges>
         <release.remoteTagging>true</release.remoteTagging>
         <release.scmCommentPrefix>[maven-release-plugin] </release.scmCommentPrefix>
-        <!-- Eclipse EE4J XML Web Services: align jaxws-rt / jaxws-tools. jaxws-maven-plugin 4.0.3+ requires JDK 17 to run wsimport - keep plugin at 4.0.2 on JDK 11. -->
+        <!-- Eclipse EE4J XML Web Services: align jaxws-rt / jaxws-tools / jaxws-maven-plugin. Plugin 4.0.3+ requires JDK 17+ to run wsimport. -->
         <jaxws.rt.version>4.0.5</jaxws.rt.version>
-        <jaxws.maven.plugin.version>4.0.2</jaxws.maven.plugin.version>
+        <jaxws.maven.plugin.version>4.0.5</jaxws.maven.plugin.version>
         <!-- wsimport/XJC 4.0.7+ writes schema-fragment Javadoc that Maven Javadoc accepts. Pin jaxb-xjc on jaxws-maven-plugin. Align with hi-wsdl at ${project.version}. -->
         <jaxb.xjc.version>4.0.9</jaxb.xjc.version>
         <!-- GMavenPlus build scripts only (`groovy` + `groovy-ant` on the plugin classpath; not compile deps of the published JAR). -->
@@ -90,7 +90,7 @@
         <hi.wsdl.codegen.skip>false</hi.wsdl.codegen.skip>
         <!-- Build-time WSDL root: override with -Dhi.wsdl.tree.root or env HI_WSDL_TREE_ROOT (GMavenPlus initialize resolves settings.xml too). -->
         <hi.wsdl.tree.root>${project.basedir}/wsdls/xml</hi.wsdl.tree.root>
-        <!-- au.gov.nehta:hi-wsdl and sibling libs (Java 11 / Jakarta). Same Maven version as this artifact. -->
+        <!-- au.gov.nehta:hi-wsdl and sibling libs (Java 17 / Jakarta). Same Maven version as this artifact. -->
         <hi.wsdl.version>${project.version}</hi.wsdl.version>
         <nehta.xsp.lib.version>${project.version}</nehta.xsp.lib.version>
         <maven.shade.plugin.version>3.6.2</maven.shade.plugin.version>
@@ -958,7 +958,7 @@
                 </plugins>
             </build>
         </profile>
-        <!-- Optional: pre-generated types from au.gov.nehta:hi-wsdl (Maven Central or mvn install). jaxws-maven-plugin 4.0.2 ignores global skip; phase none per execution is required. -->
+        <!-- Optional: pre-generated types from au.gov.nehta:hi-wsdl (Maven Central or mvn install). jaxws-maven-plugin ignores global skip; phase none per execution is required. -->
         <profile>
             <id>hi-wsdl-artifact</id>
             <properties>

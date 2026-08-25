@@ -17,7 +17,7 @@ The **first number** of the Maven version is the **Java SE** version that line t
 | ------------- | ------- |
 | **8.0.0**     | **8**   |
 | **11.0.0**    | **11**  |
-| **17.0.0.1**  | **17**  |
+| **17.0.0**    | **17**  |
 | **21.0.0.1**  | **21**  |
 | **24.0.0.1**  | **24**  |
 
@@ -27,7 +27,7 @@ The **first number** of the Maven version is the **Java SE** version that line t
 | ------------ | ---- | ---------------------------------------- | ------------------------ |
 | **8.0.0**    | 8    | **`javax.xml.ws`**, **`javax.xml.bind`** | **14** (standard HI B2B) |
 | **11.0.0**   | 11   | **Jakarta** XML WS / Bind                | **26** (full MCA)        |
-| **17.0.0.1** | 17   | **Jakarta** XML WS / Bind                | **26** (full MCA)        |
+| **17.0.0**   | 17   | **Jakarta** XML WS / Bind                | **26** (full MCA)        |
 | **21.0.0.1** | 21   | **Jakarta** XML WS / Bind                | **26** (full MCA)        |
 | **24.0.0.1** | 24   | **Jakarta** XML WS / Bind                | **26** (full MCA)        |
 
@@ -37,15 +37,15 @@ The **first number** of the Maven version is the **Java SE** version that line t
 | ------------ | ------------------- |
 | **8.0.0**    | `java-8`            |
 | **11.0.0**   | `java-11`           |
-| **17.0.0.1** | `java-17`           |
+| **17.0.0**   | `java-17`           |
 | **21.0.0.1** | `java-21`           |
 | **24.0.0.1** | `java-24`           |
 
-**`hi-wsdl-java`** uses the **same branch names** and the **same Maven version** on each pair (`hi-wsdl` **11.0.0** on `java-11` with **`hi-b2b-client`** **11.0.0**, and so on). Artifact ids stay **`hi-wsdl`** and **`hi-b2b-client`**; the version distinguishes the Java SE line.
+**`hi-wsdl-java`** uses the **same branch names** and the **same Maven version** on each pair (`hi-wsdl` **17.0.0** on `java-17` with **`hi-b2b-client`** **17.0.0**, and so on). Artifact ids stay **`hi-wsdl`** and **`hi-b2b-client`**; the version distinguishes the Java SE line.
 
-On a given branch, **do not change the first number** of **`<version>`**. Next GA on **`java-11`** is **`11.0.0.2`** (then **`11.0.1-SNAPSHOT`**), not **`17.x`**. A new Java SE target is a **new branch**, not a bump on this one.
+On a given branch, **do not change the first number** of **`<version>`**. Next GA on **`java-17`** is **`17.0.0.1`** (then **`17.0.1-SNAPSHOT`**), not **`21.x`**. A new Java SE target is a **new branch**, not a bump on this one.
 
-**This checkout (`11.0.0-SNAPSHOT`):** Java **11**, **26** facades, **Jakarta**, in-repo **`wsimport`**. Stack, Surefire includes, and **`.github/workflows/ci.yml`** (branch **`java-11`**, JDK **11**) below apply to **this line only**. Other branches keep their own **`pom.xml`**, CI branch filter, and JDK. **`hi-b2b-client`** **11.0.0** uses **`hi-wsdl`** at the **same version**.
+**This checkout (`17.0.0-SNAPSHOT`):** Java **17**, **26** facades, **Jakarta**, in-repo **`wsimport`**. Stack, Surefire includes, and **`.github/workflows/ci.yml`** (branch **`java-17`**, JDK **17**) below apply to **this line only**. Other branches keep their own **`pom.xml`**, CI branch filter, and JDK. **`hi-b2b-client`** **17.0.0** uses **`hi-wsdl`** at the **same version**.
 
 ---
 
@@ -82,7 +82,7 @@ WSDL tree (see section 6).
 | settings.xml.example                              | Optional Maven settings: **hi-wsdl-tree** profile and commented Central Portal deploy credentials |
 | build.ps1, build.sh, build.bat                    | Thin wrappers around mvn clean verify                                                             |
 
-Branch model: **`11.0.0`**, Git **`java-11`**, full MCA, in-repo **`wsimport`**. JDK 11, Jakarta XML Web Services (**`jaxws-rt` 4.x**).
+Branch model: **`17.0.0`**, Git **`java-17`**, full MCA, in-repo **`wsimport`**. JDK 17, Jakarta XML Web Services (**`jaxws-rt` 4.x**).
 
 ---
 
@@ -187,9 +187,9 @@ wsimport-parts paths from compile source roots.
 
 | Property                   | Default / role                                                               |
 | -------------------------- | ---------------------------------------------------------------------------- |
-| maven.compiler.release     | 11                                                                           |
+| maven.compiler.release     | 17                                                                           |
 | jaxws.rt.version           | jaxws-rt and jaxws-tools version (4.0.5)                                     |
-| jaxws.maven.plugin.version | jaxws-maven-plugin (4.0.2 on JDK 11; 4.0.3+ may need JDK 17 to run wsimport) |
+| jaxws.maven.plugin.version | jaxws-maven-plugin (4.0.5; 4.0.3+ requires JDK 17+ to run wsimport)          |
 | groovy.version             | gmavenplus-plugin script runtime only                                        |
 | hi.wsdl.codegen.skip       | false; true skips wsimport and enforcer                                      |
 | hi.wsdl.codegen.clean      | false; true deletes prior wsimport output before codegen                     |
@@ -349,7 +349,7 @@ retryOnError. See CONTRIBUTING.md for manual delete steps.
 
 ## 8. Sibling project alignment
 
-Keep **`hi.wsdl.version`** at **`${project.version}`** so **`hi-b2b-client`** **11.0.0** consumes **`hi-wsdl`** **11.0.0** (and **8.0.0** with **8.0.0** on the Java 8 line). Align **`jaxws-rt`**, **`jaxws-maven-plugin`**, and **`jaxb-xjc`** with **hi-wsdl-java** on the same line.
+Keep **`hi.wsdl.version`** at **`${project.version}`** so **`hi-b2b-client`** **17.0.0** consumes **`hi-wsdl`** **17.0.0** (and **8.0.0** with **8.0.0** on the Java 8 line). Align **`jaxws-rt`**, **`jaxws-maven-plugin`**, and **`jaxb-xjc`** with **hi-wsdl-java** on the same line.
 
 Keep plugin and shared dependency versions aligned with mhr-b2b-client-java where both
 use the same stack (jaxws-rt, jaxws-maven-plugin, gmavenplus, surefire, compiler, shade).
@@ -367,13 +367,13 @@ Publishing uses **`central-publishing-maven-plugin`** (Sonatype Central Portal).
 | ------------------- | ------------ | --------------------------- | ------- |
 | **`java-8`**        | 8 / javax    | **8.0.0**                   | 14      |
 | **`java-11`**       | 11 / Jakarta | **11.0.0**                  | 26      |
-| **`java-17`**       | 17 / Jakarta | **17.0.0.1**                | 26      |
+| **`java-17`**       | 17 / Jakarta | **17.0.0**                  | 26      |
 | **`java-21`**       | 21 / Jakarta | **21.0.0.1**                | 26      |
 | **`java-24`**       | 24 / Jakarta | **24.0.0.1**                | 26      |
 
 **Order:** publish **`hi-wsdl-java`** first (same branch and GA), then this repo. Client **`verify`** / **`release:perform`** needs **`hi-wsdl`** at that GA on Central (or a prior local **`mvn install`**). Do not reverse the order.
 
-**`-DdevelopmentVersion`:** keep the same first number as **`-DreleaseVersion`** (example on this line: **`11.0.0`** then **`11.0.1-SNAPSHOT`**).
+**`-DdevelopmentVersion`:** keep the same first number as **`-DreleaseVersion`** (example on this line: **`17.0.0`** then **`17.0.1-SNAPSHOT`**).
 
 ### SNAPSHOT or manual GA
 
@@ -381,21 +381,21 @@ Publishing uses **`central-publishing-maven-plugin`** (Sonatype Central Portal).
 2. **`mvn -B "-Prelease" clean verify`**
 3. **`mvn -B "-Prelease" deploy`**
 
-Git/SCM settings for **`maven-release-plugin`** live in **`pom.xml`** properties (**`scm.repo.url`**, **`release.*`**). Tags default to **`{artifactId}-{version}`** (e.g. **`hi-b2b-client-11.0.0`**).
+Git/SCM settings for **`maven-release-plugin`** live in **`pom.xml`** properties (**`scm.repo.url`**, **`release.*`**). Tags default to **`{artifactId}-{version}`** (e.g. **`hi-b2b-client-17.0.0`**).
 
 ### Automated GA (`maven-release-plugin`)
 
 Run on the **target branch** with a **clean** working tree. The plugin commits version bumps, creates the release tag, deploys from the tag checkout, bumps to the next **`-SNAPSHOT`**, and **pushes branch + tag** (**`pushChanges`** / **`remoteTagging`** in **`pom.xml`**). Git remote credentials (SSH or HTTPS) must work non-interactively.
 
 ```text
-mvn -B "-Prelease" release:prepare release:perform -DreleaseVersion=11.0.0 -DdevelopmentVersion=11.0.1-SNAPSHOT -Dtag=hi-b2b-client-11.0.0
+mvn -B "-Prelease" release:prepare release:perform -DreleaseVersion=17.0.0 -DdevelopmentVersion=17.0.1-SNAPSHOT -Dtag=hi-b2b-client-17.0.0
 ```
 
-Replace **`-DreleaseVersion`**, **`-DdevelopmentVersion`**, and **`-Dtag`** for the branch you are on (same first number; e.g. **`hi-wsdl-11.0.0`** / **`hi-b2b-client-11.0.0`** on **`java-11`**). Omit **`-D...`** only if you accept interactive prompts.
+Replace **`-DreleaseVersion`**, **`-DdevelopmentVersion`**, and **`-Dtag`** for the branch you are on (same first number; e.g. **`hi-wsdl-17.0.0`** / **`hi-b2b-client-17.0.0`** on **`java-17`**). Omit **`-D...`** only if you accept interactive prompts.
 
 **After success:** confirm **`hi-wsdl`** GA on Central, then this artifact. No extra Git steps unless push failed; then from the release branch:
 
-`git push origin java-11` (or **`java-8`**, **`java-17`**, **`java-21`**, **`java-24`**) and **`git push origin <tag>`**.
+`git push origin java-17` (or **`java-8`**, **`java-11`**, **`java-21`**, **`java-24`**) and **`git push origin <tag>`**.
 
 **`-Dgpg.skip=false`** is equivalent to **`-Prelease`** for signing.
 
@@ -405,7 +405,7 @@ Replace **`-DreleaseVersion`**, **`-DdevelopmentVersion`**, and **`-Dtag`** for 
 
 ## New Java SE line
 
-When adding a line (e.g. Java **25**): create **`java-25`** on **both** **`hi-wsdl-java`** and **`hi-b2b-client-java`** from the nearest existing line; set **`<version>`** first number to **25** (e.g. **`25.0.0.1-SNAPSHOT`**); set **`maven.compiler.release`**, JAX-WS coordinates, CI **`java-version`** / branch filter, and docs to that line. Do not retarget an existing branch.
+When adding a line (e.g. Java **25**): create **`java-25`** on **both** **`hi-wsdl-java`** and **`hi-b2b-client-java`** from the nearest existing line; set **`<version>`** first number to **25** (e.g. **`25.0.0-SNAPSHOT`**); set **`maven.compiler.release`**, JAX-WS coordinates, CI **`java-version`** / branch filter, and docs to that line. Do not retarget an existing branch.
 
 ---
 
