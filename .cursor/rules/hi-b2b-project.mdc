@@ -13,31 +13,31 @@ Follow **`documentation-standards.mdc`**. Integrator docs use **version numbers*
 
 The **first number** of the Maven version is the **Java SE** target. **`hi-b2b-client`** and **`hi-wsdl`** always share the **same** version.
 
-| Version      | Java | APIs        | Facades                  |
-| ------------ | ---- | ----------- | ------------------------ |
-| **8.0.0**    | 8    | **javax**   | **14** (standard HI B2B) |
-| **11.0.0**   | 11   | **Jakarta** | **26** (full MCA)        |
-| **17.0.0**   | 17   | **Jakarta** | **26** (full MCA)        |
-| **21.0.0.1** | 21   | **Jakarta** | **26** (full MCA)        |
-| **24.0.0.1** | 24   | **Jakarta** | **26** (full MCA)        |
+| Version    | Java | APIs        | Facades                  |
+| ---------- | ---- | ----------- | ------------------------ |
+| **8.0.0**  | 8    | **javax**   | **14** (standard HI B2B) |
+| **11.0.0** | 11   | **Jakarta** | **26** (full MCA)        |
+| **17.0.0** | 17   | **Jakarta** | **26** (full MCA)        |
+| **21.0.0** | 21   | **Jakarta** | **26** (full MCA)        |
+| **24.0.0** | 24   | **Jakarta** | **26** (full MCA)        |
 
 **Git branch mapping (maintainers only - never in integrator docs):**
 
-| Version      | Official Git branch |
-| ------------ | ------------------- |
-| **8.0.0**    | `java-8`            |
-| **11.0.0**   | `java-11`           |
-| **17.0.0**   | `java-17`           |
-| **21.0.0.1** | `java-21`           |
-| **24.0.0.1** | `java-24`           |
+| Version    | Official Git branch |
+| ---------- | ------------------- |
+| **8.0.0**  | `java-8`            |
+| **11.0.0** | `java-11`           |
+| **17.0.0** | `java-17`           |
+| **21.0.0** | `java-21`           |
+| **24.0.0** | `java-24`           |
 
-## This 17.0.0 line
+## This 21.0.0 line
 
-**`17.0.0-SNAPSHOT`**: Java **17**, **Jakarta**, **26** facades, in-repo **`wsimport`** when building from source (licensed tree at **`wsdls/xml/`**), or **`-Phi-wsdl-artifact`** with **`au.gov.nehta:hi-wsdl`** at **`${project.version}`**. See **MAINTAINERS.md**.
+**`21.0.0-SNAPSHOT`**: Java **21**, **Jakarta**, **26** facades, in-repo **`wsimport`** when building from source (licensed tree at **`wsdls/xml/`**), or **`-Phi-wsdl-artifact`** with **`au.gov.nehta:hi-wsdl`** at **`${project.version}`**. See **MAINTAINERS.md**.
 
 ## Build from source
 
-- JDK **17**: `mvn -B "-Dgpg.skip=true" clean verify` (quote `-D` on PowerShell). Licensed **`wsdls/xml/`** required unless **`-Phi-wsdl-artifact`**.
+- JDK **21**: `mvn -B "-Dgpg.skip=true" clean verify` (quote `-D` on PowerShell). Licensed **`wsdls/xml/`** required unless **`-Phi-wsdl-artifact`**.
 - **Local / unpublished:** install matching **`hi-wsdl`** then **`-Phi-wsdl-artifact verify`** - see **`CONTRIBUTING.md`**
 - **`jaxws-rt` 4.0.5**; **`jaxws-maven-plugin` 4.0.5**
 - Default Surefire: offline tests; **`-Pintegration`** for mutual-TLS
@@ -55,7 +55,7 @@ The **first number** of the Maven version is the **Java SE** target. **`hi-b2b-c
 | Delivers | WSDL on classpath + generated types | Facade clients, TLS, signing |
 | Artifact | `hi-wsdl`                           | `hi-b2b-client`              |
 
-Align **`hi-wsdl`** and **`hi-b2b-client`** at the **same version** per release line (**8.0.0** with **8.0.0**, **11.0.0** with **11.0.0**, **17.0.0** with **17.0.0**, and so on).
+Align **`hi-wsdl`** and **`hi-b2b-client`** at the **same version** per release line (**8.0.0** with **8.0.0**, **11.0.0** with **11.0.0**, **17.0.0** with **17.0.0**, **21.0.0** with **21.0.0**, and so on).
 
 ## Doc split
 

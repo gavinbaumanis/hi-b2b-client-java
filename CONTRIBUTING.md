@@ -6,14 +6,14 @@
 
 ## Prerequisites
 
-- **JDK 17+** with **`JAVA_HOME`** set (see **`maven.compiler.release`** in **`pom.xml`**).
+- **JDK 21+** with **`JAVA_HOME`** set (see **`maven.compiler.release`** in **`pom.xml`**).
 - **Maven 3.6+** on **`PATH`**.
 
 Dependencies resolve from **[Maven Central](https://central.sonatype.com/)** unless you are doing a **local build** (below).
 
 ## Versioning
 
-The **first number** of the Maven version is the **Java SE** version that line targets. **`hi-b2b-client`** and **`hi-wsdl`** always share the **same** version (**17.0.0** with **17.0.0** on this line). **11.0.0** and later use **Jakarta** and **26** facades; **8.0.0** uses **`javax`** and **14** facades. See **`README.md`**.
+The **first number** of the Maven version is the **Java SE** version that line targets. **`hi-b2b-client`** and **`hi-wsdl`** always share the **same** version (**21.0.0** with **21.0.0** on this line). **11.0.0** and later use **Jakarta** and **26** facades; **8.0.0** uses **`javax`** and **14** facades. See **`README.md`**.
 
 ---
 
@@ -25,7 +25,7 @@ From the repository root (directory containing **`pom.xml`**):
 mvn -B "-Dgpg.skip=true" clean verify
 ```
 
-This line (**`17.0.0`**) runs **26** **`wsimport`** executions against the licensed WSDL tree. Install the ADHA bundle under **`wsdls/xml/`** so **`wsdls/xml/wsdl/`** and **`wsdls/xml/schema/`** exist. See **`wsdls/README.md`**.
+This line (**`21.0.0`**) runs **26** **`wsimport`** executions against the licensed WSDL tree. Install the ADHA bundle under **`wsdls/xml/`** so **`wsdls/xml/wsdl/`** and **`wsdls/xml/schema/`** exist. See **`wsdls/README.md`**.
 
 **Build-time WSDL root:** property **`hi.wsdl.tree.root`** (default **`wsdls/xml`**). Overrides: **`-Dhi.wsdl.tree.root=...`**, environment **`HI_WSDL_TREE_ROOT`**, or the profile in **`settings.xml.example`**. **`HI_WSDL_ARTIFACT_ROOT`** is runtime-only and is **not** read by Maven. Details: **`MAINTAINERS.md`**.
 
@@ -66,7 +66,7 @@ Use this section when you do **not** have the licensed WSDL tree locally, or whe
 
 ### Skip wsimport: `hi-wsdl` artifact profile
 
-When **`au.gov.nehta:hi-wsdl`** matching **`${project.version}`** is available (Maven Central or **`mvn install`** from a sibling **`hi-wsdl`** source tree), skip in-repo **`wsimport`**. Pair **17.0.0** with **`hi-wsdl`** **17.0.0** (**8.0.0** with **8.0.0** on the Java 8 line):
+When **`au.gov.nehta:hi-wsdl`** matching **`${project.version}`** is available (Maven Central or **`mvn install`** from a sibling **`hi-wsdl`** source tree), skip in-repo **`wsimport`**. Pair **21.0.0** with **`hi-wsdl`** **21.0.0** (**8.0.0** with **8.0.0** on the Java 8 line):
 
 ```text
 mvn -B -Phi-wsdl-artifact "-Dgpg.skip=true" clean verify
@@ -122,7 +122,7 @@ mvn -B "-Dgpg.skip=true" -Pintegration "-Dtest=ConsumerSearchIHIClientTest#basic
 
 ## CI
 
-**`.github/workflows/ci.yml`**: runs on official branch **`java-17`**. Full **`verify`** when licensed WSDL is present under **`wsdls/xml/`**; otherwise **`validate`** only (expected on public GitHub without licensed files). Local alternative without the tree: **`-Phi-wsdl-artifact`** after installing matching **`hi-wsdl`**.
+**`.github/workflows/ci.yml`**: runs on official branch **`java-21`**. Full **`verify`** when licensed WSDL is present under **`wsdls/xml/`**; otherwise **`validate`** only (expected on public GitHub without licensed files). Local alternative without the tree: **`-Phi-wsdl-artifact`** after installing matching **`hi-wsdl`**.
 
 ---
 

@@ -31,11 +31,11 @@ Add the artifact from [Maven Central](https://central.sonatype.com/). Use a **`<
 <dependency>
   <groupId>au.gov.nehta</groupId>
   <artifactId>hi-b2b-client</artifactId>
-  <version>17.0.0</version>
+  <version>21.0.0</version>
 </dependency>
 ```
 
-**This line (`17.0.0`):** Java **17**, **Jakarta** XML WS / Bind, **26** full MCA facade clients. Transitive runtime includes **`com.sun.xml.ws:jaxws-rt`** (Jakarta). No separate JDK SOAP install is required. Pair with **`au.gov.nehta:hi-wsdl`** **`17.0.0`**.
+**This line (`21.0.0`):** Java **21**, **Jakarta** XML WS / Bind, **26** full MCA facade clients. Transitive runtime includes **`com.sun.xml.ws:jaxws-rt`** (Jakarta). No separate JDK SOAP install is required. Pair with **`au.gov.nehta:hi-wsdl`** **`21.0.0`**.
 
 SOAP application code uses **`jakarta.xml.ws`**, **`jakarta.xml.bind`**, and related Jakarta APIs. Java SE types such as **`javax.net.ssl`** and **`javax.xml.datatype.XMLGregorianCalendar`** are unchanged.
 
@@ -50,8 +50,8 @@ The **first number** of the Maven version is the **Java SE** version that line t
 | **8.0.0** | **8** | **`javax.xml.ws`**, **`javax.xml.bind`** | **14** (standard HI B2B) |
 | **11.0.0** | **11** | **Jakarta** XML WS / Bind | **26** (full MCA) |
 | **17.0.0** | **17** | **Jakarta** XML WS / Bind | **26** (full MCA) |
-| **21.0.0.1** | **21** | **Jakarta** XML WS / Bind | **26** (full MCA) |
-| **24.0.0.1** | **24** | **Jakarta** XML WS / Bind | **26** (full MCA) |
+| **21.0.0** | **21** | **Jakarta** XML WS / Bind | **26** (full MCA) |
+| **24.0.0** | **24** | **Jakarta** XML WS / Bind | **26** (full MCA) |
 
 Pick the coordinate that matches your JDK. Do not mix **`hi-b2b-client`** and **`hi-wsdl`** versions. All published versions are on **[Maven Central](https://central.sonatype.com/)**.
 
@@ -59,7 +59,7 @@ Pick the coordinate that matches your JDK. Do not mix **`hi-b2b-client`** and **
 
 ## Note
 
-The **17.0.0** line uses **Jakarta** and exposes all **26** facades (full MCA). **8.0.0** is **`javax`** with **14** facades (standard HI B2B only).
+The **21.0.0** line uses **Jakarta** and exposes all **26** facades (full MCA). **8.0.0** is **`javax`** with **14** facades (standard HI B2B only).
 
 ---
 
@@ -120,7 +120,7 @@ Your production application may use environment variables or a secrets store ins
 
 ## Client classes
 
-Package base: **`au.gov.nehta.vendorlibrary.hi`**. Version **17.0.0** exposes **26** facade classes:
+Package base: **`au.gov.nehta.vendorlibrary.hi`**. Version **21.0.0** exposes **26** facade classes:
 
 | Area | Classes |
 | ---- | ------- |
