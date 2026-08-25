@@ -31,11 +31,11 @@ Add the artifact from [Maven Central](https://central.sonatype.com/). Use a **`<
 <dependency>
   <groupId>au.gov.nehta</groupId>
   <artifactId>hi-b2b-client</artifactId>
-  <version>21.0.0</version>
+  <version>24.0.0</version>
 </dependency>
 ```
 
-**This line (`21.0.0`):** Java **21**, **Jakarta** XML WS / Bind, **26** full MCA facade clients. Transitive runtime includes **`com.sun.xml.ws:jaxws-rt`** (Jakarta). No separate JDK SOAP install is required. Pair with **`au.gov.nehta:hi-wsdl`** **`21.0.0`**.
+**This line (`24.0.0`):** Java **24**, **Jakarta** XML WS / Bind, **26** full MCA facade clients. Transitive runtime includes **`com.sun.xml.ws:jaxws-rt`** (Jakarta). No separate JDK SOAP install is required. Pair with **`au.gov.nehta:hi-wsdl`** **`24.0.0`**.
 
 SOAP application code uses **`jakarta.xml.ws`**, **`jakarta.xml.bind`**, and related Jakarta APIs. Java SE types such as **`javax.net.ssl`** and **`javax.xml.datatype.XMLGregorianCalendar`** are unchanged.
 
@@ -59,7 +59,7 @@ Pick the coordinate that matches your JDK. Do not mix **`hi-b2b-client`** and **
 
 ## Note
 
-The **21.0.0** line uses **Jakarta** and exposes all **26** facades (full MCA). **8.0.0** is **`javax`** with **14** facades (standard HI B2B only).
+The **24.0.0** line uses **Jakarta** and exposes all **26** facades (full MCA). **8.0.0** is **`javax`** with **14** facades (standard HI B2B only).
 
 ---
 
@@ -120,7 +120,7 @@ Your production application may use environment variables or a secrets store ins
 
 ## Client classes
 
-Package base: **`au.gov.nehta.vendorlibrary.hi`**. Version **21.0.0** exposes **26** facade classes:
+Package base: **`au.gov.nehta.vendorlibrary.hi`**. Version **24.0.0** exposes **26** facade classes:
 
 | Area | Classes |
 | ---- | ------- |

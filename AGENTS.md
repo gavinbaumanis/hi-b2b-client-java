@@ -6,7 +6,7 @@ Rules: `.cursor/rules/*.mdc`. Do not duplicate in README or CONTRIBUTING.
 |---------|------|
 | ASCII only in authored files | `ascii-source.mdc` |
 | Documentation and build scripts (implementor-first, Central, local, OS, paths, no secrets) | `documentation-standards.mdc` |
-| HI scope, WSDL, build, Java 21 / Jakarta | `hi-b2b-project.mdc` |
+| HI scope, WSDL, build, Java 24 / Jakarta | `hi-b2b-project.mdc` |
 | Worktrees local only; versions in integrator docs | `worktrees.mdc` |
 | Multi-branch edits in one repo - use worktree, not checkout/stash | `multi-branch-worktrees.mdc` |
 

@@ -1,5 +1,16 @@
 # Change Log/Revision History
 
+# = 24.0.0 =
+
+- Maven **`au.gov.nehta:hi-b2b-client`** **24.0.0** (Java **24** / **Jakarta**, **26** facade clients, full MCA). Pair with **`hi-wsdl`** **24.0.0**. The first number of both Maven versions is the targeted Java SE version.
+- **`smi-xsp`** at **`nehta.xsp.lib.version`** = **`${project.version}`** (**24.0.0**).
+- Runtime: Eclipse EE4J **`jaxws-rt` 4.0.5**; in-repo **`wsimport`** via **`jaxws-maven-plugin` 4.0.5** (JDK 17+).
+- Messages `searchIHI`: `electronicCommunication` before `dateOfBirth` (international address before unstructured) so Consumer Search IHI (including batch) request XML matches the HI Service message schema.
+- Interface `searchIHI`: optional `electronicCommunication` before `dateOfBirth` and `australianUnstructuredStreetAddress` before `internationalAddress` on **`HI_ConsumerSearchIHIInterface-3.0`**.
+- For in-repo `wsimport`, keep that particle order in licensed `SearchIHIMessages.xsd` (see `wsdls/README.md`). With `-Phi-wsdl-artifact`, use matching **`au.gov.nehta:hi-wsdl`** **24.0.0**.
+- **Tests:** **`HiRequestElementOrderParityTest`** asserts JAXB `propOrder` for Messages/Interface `searchIHI`, batch `SearchIHIRequestType`, HI31/HI33 `searchForProviderIndividual`, TDS search `providerIndividual`, and Australian/International address types (same sequences as **`hi-wsdl`**). **`HiFacadeCoverageTest`** asserts **26** MCA facades and generated **`Service`** types.
+- Consumer Search IHI: **`australianUnstructuredStreetAddressSearch`** (suburb, state, postcode required). Structured Australian street search requires **`streetType`** when **`streetNumber`** is set; structured and unstructured addresses are mutually exclusive.
+
 # = 21.0.0 =
 
 - Maven **`au.gov.nehta:hi-b2b-client`** **21.0.0** (Java **21** / **Jakarta**, **26** facade clients, full MCA). Pair with **`hi-wsdl`** **21.0.0**. The first number of both Maven versions is the targeted Java SE version.

@@ -9,7 +9,7 @@
 
     <groupId>au.gov.nehta</groupId>
     <artifactId>hi-b2b-client</artifactId>
-    <version>21.0.0-SNAPSHOT</version>
+    <version>24.0.0-SNAPSHOT</version>
     <name>HI B2B client</name>
     <description>Example client implementations of Healthcare Identifiers (HI) service</description>
     <url>https://github.com/AuDigitalHealth/hi-b2b-client-java</url>
@@ -55,7 +55,7 @@
     </distributionManagement>
 
     <properties>
-        <maven.compiler.release>21</maven.compiler.release>
+        <maven.compiler.release>24</maven.compiler.release>
         <encoding>UTF-8</encoding>
         <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
@@ -90,7 +90,7 @@
         <hi.wsdl.codegen.skip>false</hi.wsdl.codegen.skip>
         <!-- Build-time WSDL root: override with -Dhi.wsdl.tree.root or env HI_WSDL_TREE_ROOT (GMavenPlus initialize resolves settings.xml too). -->
         <hi.wsdl.tree.root>${project.basedir}/wsdls/xml</hi.wsdl.tree.root>
-        <!-- au.gov.nehta:hi-wsdl and sibling libs (Java 21 / Jakarta). Same Maven version as this artifact. -->
+        <!-- au.gov.nehta:hi-wsdl and sibling libs (Java 24 / Jakarta). Same Maven version as this artifact. -->
         <hi.wsdl.version>${project.version}</hi.wsdl.version>
         <nehta.xsp.lib.version>${project.version}</nehta.xsp.lib.version>
         <maven.shade.plugin.version>3.6.2</maven.shade.plugin.version>
