@@ -15,37 +15,37 @@ The **first number** of the Maven version is the **Java SE** version that line t
 
 | Maven version | Java SE |
 | ------------- | ------- |
-| **8.0.0.1** | **8** |
-| **11.0.0.1** | **11** |
-| **17.0.0.1** | **17** |
-| **21.0.0.1** | **21** |
-| **24.0.0.1** | **24** |
+| **8.0.0**     | **8**   |
+| **11.0.0**    | **11**  |
+| **17.0.0.1**  | **17**  |
+| **21.0.0.1**  | **21**  |
+| **24.0.0.1**  | **24**  |
 
 **Documentation convention:** README, CONTRIBUTING, CHANGELOG, and integrator-facing text use **version numbers only** - never Git branch names.
 
-| Version | Java | APIs | Facade clients |
-| ------- | ---- | ---- | -------------- |
-| **8.0.0.1** | 8 | **`javax.xml.ws`**, **`javax.xml.bind`** | **14** (standard HI B2B) |
-| **11.0.0.1** | 11 | **Jakarta** XML WS / Bind | **26** (full MCA) |
-| **17.0.0.1** | 17 | **Jakarta** XML WS / Bind | **26** (full MCA) |
-| **21.0.0.1** | 21 | **Jakarta** XML WS / Bind | **26** (full MCA) |
-| **24.0.0.1** | 24 | **Jakarta** XML WS / Bind | **26** (full MCA) |
+| Version      | Java | APIs                                     | Facade clients           |
+| ------------ | ---- | ---------------------------------------- | ------------------------ |
+| **8.0.0**    | 8    | **`javax.xml.ws`**, **`javax.xml.bind`** | **14** (standard HI B2B) |
+| **11.0.0**   | 11   | **Jakarta** XML WS / Bind                | **26** (full MCA)        |
+| **17.0.0.1** | 17   | **Jakarta** XML WS / Bind                | **26** (full MCA)        |
+| **21.0.0.1** | 21   | **Jakarta** XML WS / Bind                | **26** (full MCA)        |
+| **24.0.0.1** | 24   | **Jakarta** XML WS / Bind                | **26** (full MCA)        |
 
 **Git branch mapping (maintainers / checkout only - do not use in integrator docs):**
 
-| Version | Official Git branch |
-| ------- | ------------------- |
-| **8.0.0.1** | `java-8` |
-| **11.0.0.1** | `java-11` |
-| **17.0.0.1** | `java-17` |
-| **21.0.0.1** | `java-21` |
-| **24.0.0.1** | `java-24` |
+| Version      | Official Git branch |
+| ------------ | ------------------- |
+| **8.0.0**    | `java-8`            |
+| **11.0.0**   | `java-11`           |
+| **17.0.0.1** | `java-17`           |
+| **21.0.0.1** | `java-21`           |
+| **24.0.0.1** | `java-24`           |
 
-**`hi-wsdl-java`** uses the **same branch names** and the **same Maven version** on each pair (`hi-wsdl` **11.0.0.1** on `java-11` with **`hi-b2b-client`** **11.0.0.1**, and so on). Artifact ids stay **`hi-wsdl`** and **`hi-b2b-client`**; the version distinguishes the Java SE line.
+**`hi-wsdl-java`** uses the **same branch names** and the **same Maven version** on each pair (`hi-wsdl` **11.0.0** on `java-11` with **`hi-b2b-client`** **11.0.0**, and so on). Artifact ids stay **`hi-wsdl`** and **`hi-b2b-client`**; the version distinguishes the Java SE line.
 
-On a given branch, **do not change the first number** of **`<version>`**. Next GA on **`java-11`** is **`11.0.0.2`** (then **`11.0.0.2-SNAPSHOT`**), not **`17.x`**. A new Java SE target is a **new branch**, not a bump on this one.
+On a given branch, **do not change the first number** of **`<version>`**. Next GA on **`java-11`** is **`11.0.0.2`** (then **`11.0.1-SNAPSHOT`**), not **`17.x`**. A new Java SE target is a **new branch**, not a bump on this one.
 
-**This checkout (`11.0.0.1-SNAPSHOT`):** Java **11**, **26** facades, **Jakarta**, in-repo **`wsimport`**. Stack, Surefire includes, and **`.github/workflows/ci.yml`** (branch **`java-11`**, JDK **11**) below apply to **this line only**. Other branches keep their own **`pom.xml`**, CI branch filter, and JDK. **`hi-b2b-client`** **11.0.0.1** uses **`hi-wsdl`** at the **same version**.
+**This checkout (`11.0.0-SNAPSHOT`):** Java **11**, **26** facades, **Jakarta**, in-repo **`wsimport`**. Stack, Surefire includes, and **`.github/workflows/ci.yml`** (branch **`java-11`**, JDK **11**) below apply to **this line only**. Other branches keep their own **`pom.xml`**, CI branch filter, and JDK. **`hi-b2b-client`** **11.0.0** uses **`hi-wsdl`** at the **same version**.
 
 ---
 
@@ -58,31 +58,31 @@ HPI-O). It is separate from the My Health Record (MHR / PCEHR) client in the sib
 mhr-b2b-client-java repository. Applications that need both depend on two JARs.
 
 Published artifact: compiled facades and helpers only. Licensed HI WSDL/XSD is never
-packaged in the JAR (maven-jar-plugin excludes *.wsdl). Runtime callers must supply the
+packaged in the JAR (maven-jar-plugin excludes \*.wsdl). Runtime callers must supply the
 WSDL tree (see section 6).
 
 ---
 
 ## 2. Repository layout
 
-| Path | Role |
-| ---- | ---- |
-| pom.xml | Build, wsimport executions, profiles, dependency versions |
-| src/main/java/au/gov/nehta/vendorlibrary/hi/ | Public HI client facades and handlers |
-| src/main/java/au/gov/nehta/vendorlibrary/ws/ | Shared JAX-WS helpers (WebServiceClientUtil, handlers) |
-| src/main/java/au/gov/nehta/vendorlibrary/hi/wsdl/ | HiWsdlArtifactRoot (runtime WSDL resolution) |
-| src/main/java/hi_override/org/w3/xmldsig/ | Hand-maintained XML-DSig types (override generated) |
-| src/sample/java/ | Sample programs (sample profile only) |
-| src/test/java/ | Unit and integration tests |
-| src/test/resources/ | Test keystores (placeholders), JDBC fixtures |
-| wsdls/xml/ | Default location for licensed WSDL/XSD (not in Git; see wsdls/README.md) |
-| wsdls/xml/binding/ | JAX-WS/JAXB binding fragments shipped with the repo |
-| target/generated-sources/wsimport/ | Merged wsimport output (build only) |
-| local.properties.example | Template for runtime and integration-test configuration |
-| settings.xml.example | Optional Maven settings: **hi-wsdl-tree** profile and commented Central Portal deploy credentials |
-| build.ps1, build.sh, build.bat | Thin wrappers around mvn clean verify |
+| Path                                              | Role                                                                                              |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| pom.xml                                           | Build, wsimport executions, profiles, dependency versions                                         |
+| src/main/java/au/gov/nehta/vendorlibrary/hi/      | Public HI client facades and handlers                                                             |
+| src/main/java/au/gov/nehta/vendorlibrary/ws/      | Shared JAX-WS helpers (WebServiceClientUtil, handlers)                                            |
+| src/main/java/au/gov/nehta/vendorlibrary/hi/wsdl/ | HiWsdlArtifactRoot (runtime WSDL resolution)                                                      |
+| src/main/java/hi_override/org/w3/xmldsig/         | Hand-maintained XML-DSig types (override generated)                                               |
+| src/sample/java/                                  | Sample programs (sample profile only)                                                             |
+| src/test/java/                                    | Unit and integration tests                                                                        |
+| src/test/resources/                               | Test keystores (placeholders), JDBC fixtures                                                      |
+| wsdls/xml/                                        | Default location for licensed WSDL/XSD (not in Git; see wsdls/README.md)                          |
+| wsdls/xml/binding/                                | JAX-WS/JAXB binding fragments shipped with the repo                                               |
+| target/generated-sources/wsimport/                | Merged wsimport output (build only)                                                               |
+| local.properties.example                          | Template for runtime and integration-test configuration                                           |
+| settings.xml.example                              | Optional Maven settings: **hi-wsdl-tree** profile and commented Central Portal deploy credentials |
+| build.ps1, build.sh, build.bat                    | Thin wrappers around mvn clean verify                                                             |
 
-Branch model: **`11.0.0.1`**, Git **`java-11`**, full MCA, in-repo **`wsimport`**. JDK 11, Jakarta XML Web Services (**`jaxws-rt` 4.x**).
+Branch model: **`11.0.0`**, Git **`java-11`**, full MCA, in-repo **`wsimport`**. JDK 11, Jakarta XML Web Services (**`jaxws-rt` 4.x**).
 
 ---
 
@@ -113,12 +113,12 @@ Branch model: **`11.0.0.1`**, Git **`java-11`**, full MCA, in-repo **`wsimport`*
 
 Package layout under au.gov.nehta.vendorlibrary.hi:
 
-| Package | Clients |
-| ------- | ------- |
-| ihi/ | Consumer IHI search, batch, create, update, merge, notify, resolve |
-| hpii/ | Provider individual search, directory, TDS, batch async |
-| hpio/ | Provider organisation search, manage, read, directory, batch async |
-| readreferencedata/ | ReadReferenceDataClient |
+| Package            | Clients                                                            |
+| ------------------ | ------------------------------------------------------------------ |
+| ihi/               | Consumer IHI search, batch, create, update, merge, notify, resolve |
+| hpii/              | Provider individual search, directory, TDS, batch async            |
+| hpio/              | Provider organisation search, manage, read, directory, batch async |
+| readreferencedata/ | ReadReferenceDataClient                                            |
 
 There are 26 wsimport executions and a matching set of facade classes (one primary WSDL
 each). The MCA tree under wsdls/xml/wsdl can contain more WSDLs than this JAR exposes;
@@ -139,10 +139,10 @@ section 6.
 
 ### 3.3 Compile/runtime dependencies (published JAR)
 
-| Dependency | Purpose |
-| ---------- | ------- |
-| au.gov.nehta:smi-xsp | XML-DSig, certificate validation, HI security utilities |
-| com.sun.xml.ws:jaxws-rt | Jakarta XML Web Services reference implementation |
+| Dependency              | Purpose                                                 |
+| ----------------------- | ------------------------------------------------------- |
+| au.gov.nehta:smi-xsp    | XML-DSig, certificate validation, HI security utilities |
+| com.sun.xml.ws:jaxws-rt | Jakarta XML Web Services reference implementation       |
 
 Test-only: junit, h2 (JDBC test rule). Groovy is build-time only (gmavenplus-plugin).
 
@@ -185,17 +185,17 @@ wsimport-parts paths from compile source roots.
 
 ### 4.3 Key Maven properties (pom.xml)
 
-| Property | Default / role |
-| -------- | -------------- |
-| maven.compiler.release | 11 |
-| jaxws.rt.version | jaxws-rt and jaxws-tools version (4.0.4) |
+| Property                   | Default / role                                                               |
+| -------------------------- | ---------------------------------------------------------------------------- |
+| maven.compiler.release     | 11                                                                           |
+| jaxws.rt.version           | jaxws-rt and jaxws-tools version (4.0.5)                                     |
 | jaxws.maven.plugin.version | jaxws-maven-plugin (4.0.2 on JDK 11; 4.0.3+ may need JDK 17 to run wsimport) |
-| groovy.version | gmavenplus-plugin script runtime only |
-| hi.wsdl.codegen.skip | false; true skips wsimport and enforcer |
-| hi.wsdl.codegen.clean | false; true deletes prior wsimport output before codegen |
-| hi.wsdl.tree.root | Build-time WSDL root; resolved in initialize (see section 6) |
-| maven.shade.plugin.version | fat-jar profile |
-| skipTests | false; default surefire includes are offline tests only |
+| groovy.version             | gmavenplus-plugin script runtime only                                        |
+| hi.wsdl.codegen.skip       | false; true skips wsimport and enforcer                                      |
+| hi.wsdl.codegen.clean      | false; true deletes prior wsimport output before codegen                     |
+| hi.wsdl.tree.root          | Build-time WSDL root; resolved in initialize (see section 6)                 |
+| maven.shade.plugin.version | fat-jar profile                                                              |
+| skipTests                  | false; default surefire includes are offline tests only                      |
 
 ### 4.4 wsimport configuration
 
@@ -207,11 +207,11 @@ wsimport-parts paths from compile source roots.
 
 ### 4.5 Profiles
 
-| Profile | Effect |
-| ------- | ------ |
-| integration | Surefire runs **/*Test.java (needs local.properties / HI_* and certs) |
-| sample | Adds src/sample/java at generate-sources |
-| fat-jar | maven-shade-plugin produces hi-b2b-client-*-all.jar with runtime deps shaded |
+| Profile     | Effect                                                                        |
+| ----------- | ----------------------------------------------------------------------------- |
+| integration | Surefire runs \**/*Test.java (needs local.properties / HI\_\* and certs)      |
+| sample      | Adds src/sample/java at generate-sources                                      |
+| fat-jar     | maven-shade-plugin produces hi-b2b-client-\*-all.jar with runtime deps shaded |
 
 Build wrappers (build.ps1 etc.): mvn -B -Dgpg.skip=true clean verify; pass shaded for
 fat-jar.
@@ -273,11 +273,11 @@ Copy local.properties.example to local.properties beside the JVM working directo
 Used for:
 
 - HI_WSDL_ARTIFACT_ROOT (runtime WSDL path; often ./wsdls/xml in a checkout)
-- HI_KEYSTORE_*, HI_KEY_ALIAS_*, HI_TRUSTSTORE_* (mutual TLS and signing for
+- HI*KEYSTORE*_, HI*KEY_ALIAS*_, HI*TRUSTSTORE*\* (mutual TLS and signing for
   -Pintegration tests)
 - HI_MEDICARE_ENDPOINT_BASE and per-service endpoint overrides
-- HI_USER_*, HI_VENDOR_*, HI_HPIO_* qualified identifiers for test messages
-- HI_PRODUCT_* strings
+- HI*USER*_, HI*VENDOR*_, HI*HPIO*\* qualified identifiers for test messages
+- HI*PRODUCT*\* strings
 
 **Test resolution order** (TestConfiguration): environment variable overrides
 local.properties overrides compiled default in test constants.
@@ -301,10 +301,10 @@ under certs/ (gitignored) via local.properties paths.
 
 ## 6. Tests (maintainer view)
 
-| Command | Scope |
-| ------- | ----- |
-| mvn -B "-Dgpg.skip=true" test | Default offline unit tests (see pom.xml surefire includes) |
-| mvn -B "-Dgpg.skip=true" -Pintegration test | All *Test.java; requires HI network, local.properties, certs |
+| Command                                     | Scope                                                         |
+| ------------------------------------------- | ------------------------------------------------------------- |
+| mvn -B "-Dgpg.skip=true" test               | Default offline unit tests (see pom.xml surefire includes)    |
+| mvn -B "-Dgpg.skip=true" -Pintegration test | All \*Test.java; requires HI network, local.properties, certs |
 
 Default includes: TimeUtilityTest, TestConfigurationTest, JdbcTransactionTestRuleTest,
 HiWsdlArtifactRootTest, HiWsdlArtifactSmokeTest, HiRequestElementOrderParityTest,
@@ -349,7 +349,7 @@ retryOnError. See CONTRIBUTING.md for manual delete steps.
 
 ## 8. Sibling project alignment
 
-Keep **`hi.wsdl.version`** at **`${project.version}`** so **`hi-b2b-client`** **11.0.0.1** consumes **`hi-wsdl`** **11.0.0.1** (and **8.0.0.1** with **8.0.0.1** on the Java 8 line). Align **`jaxws-rt`**, **`jaxws-maven-plugin`**, and **`jaxb-xjc`** with **hi-wsdl-java** on the same line.
+Keep **`hi.wsdl.version`** at **`${project.version}`** so **`hi-b2b-client`** **11.0.0** consumes **`hi-wsdl`** **11.0.0** (and **8.0.0** with **8.0.0** on the Java 8 line). Align **`jaxws-rt`**, **`jaxws-maven-plugin`**, and **`jaxb-xjc`** with **hi-wsdl-java** on the same line.
 
 Keep plugin and shared dependency versions aligned with mhr-b2b-client-java where both
 use the same stack (jaxws-rt, jaxws-maven-plugin, gmavenplus, surefire, compiler, shade).
@@ -363,17 +363,17 @@ Publishing uses **`central-publishing-maven-plugin`** (Sonatype Central Portal).
 
 **Parallel release lines (maintainers only):** each Git branch publishes a **different Maven version** - integrators choose by coordinate, not branch name. The first number of that version is the targeted Java SE version. Run **`release:prepare` / `release:perform`** (or manual deploy) **on that branch** (not detached HEAD).
 
-| Branch (both repos) | Java | `hi-wsdl` / `hi-b2b-client` | Facades |
-| ------------------- | ---- | --------------------------- | ------- |
-| **`java-8`** | 8 / javax | **8.0.0.1** | 14 |
-| **`java-11`** | 11 / Jakarta | **11.0.0.1** | 26 |
-| **`java-17`** | 17 / Jakarta | **17.0.0.1** | 26 |
-| **`java-21`** | 21 / Jakarta | **21.0.0.1** | 26 |
-| **`java-24`** | 24 / Jakarta | **24.0.0.1** | 26 |
+| Branch (both repos) | Java         | `hi-wsdl` / `hi-b2b-client` | Facades |
+| ------------------- | ------------ | --------------------------- | ------- |
+| **`java-8`**        | 8 / javax    | **8.0.0**                   | 14      |
+| **`java-11`**       | 11 / Jakarta | **11.0.0**                  | 26      |
+| **`java-17`**       | 17 / Jakarta | **17.0.0.1**                | 26      |
+| **`java-21`**       | 21 / Jakarta | **21.0.0.1**                | 26      |
+| **`java-24`**       | 24 / Jakarta | **24.0.0.1**                | 26      |
 
 **Order:** publish **`hi-wsdl-java`** first (same branch and GA), then this repo. Client **`verify`** / **`release:perform`** needs **`hi-wsdl`** at that GA on Central (or a prior local **`mvn install`**). Do not reverse the order.
 
-**`-DdevelopmentVersion`:** keep the same first number as **`-DreleaseVersion`** (example on this line: **`11.0.0.1`** then **`11.0.0.2-SNAPSHOT`**).
+**`-DdevelopmentVersion`:** keep the same first number as **`-DreleaseVersion`** (example on this line: **`11.0.0`** then **`11.0.1-SNAPSHOT`**).
 
 ### SNAPSHOT or manual GA
 
@@ -381,17 +381,17 @@ Publishing uses **`central-publishing-maven-plugin`** (Sonatype Central Portal).
 2. **`mvn -B "-Prelease" clean verify`**
 3. **`mvn -B "-Prelease" deploy`**
 
-Git/SCM settings for **`maven-release-plugin`** live in **`pom.xml`** properties (**`scm.repo.url`**, **`release.*`**). Tags default to **`{artifactId}-{version}`** (e.g. **`hi-b2b-client-11.0.0.1`**).
+Git/SCM settings for **`maven-release-plugin`** live in **`pom.xml`** properties (**`scm.repo.url`**, **`release.*`**). Tags default to **`{artifactId}-{version}`** (e.g. **`hi-b2b-client-11.0.0`**).
 
 ### Automated GA (`maven-release-plugin`)
 
 Run on the **target branch** with a **clean** working tree. The plugin commits version bumps, creates the release tag, deploys from the tag checkout, bumps to the next **`-SNAPSHOT`**, and **pushes branch + tag** (**`pushChanges`** / **`remoteTagging`** in **`pom.xml`**). Git remote credentials (SSH or HTTPS) must work non-interactively.
 
 ```text
-mvn -B "-Prelease" release:prepare release:perform -DreleaseVersion=11.0.0.1 -DdevelopmentVersion=11.0.0.2-SNAPSHOT -Dtag=hi-b2b-client-11.0.0.1
+mvn -B "-Prelease" release:prepare release:perform -DreleaseVersion=11.0.0 -DdevelopmentVersion=11.0.1-SNAPSHOT -Dtag=hi-b2b-client-11.0.0
 ```
 
-Replace **`-DreleaseVersion`**, **`-DdevelopmentVersion`**, and **`-Dtag`** for the branch you are on (same first number; e.g. **`hi-wsdl-11.0.0.1`** / **`hi-b2b-client-11.0.0.1`** on **`java-11`**). Omit **`-D...`** only if you accept interactive prompts.
+Replace **`-DreleaseVersion`**, **`-DdevelopmentVersion`**, and **`-Dtag`** for the branch you are on (same first number; e.g. **`hi-wsdl-11.0.0`** / **`hi-b2b-client-11.0.0`** on **`java-11`**). Omit **`-D...`** only if you accept interactive prompts.
 
 **After success:** confirm **`hi-wsdl`** GA on Central, then this artifact. No extra Git steps unless push failed; then from the release branch:
 

@@ -26,13 +26,14 @@ import javax.xml.stream.XMLStreamWriter;
 import jakarta.xml.ws.handler.MessageContext;
 
 import java.io.ByteArrayOutputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Set;
 import java.util.logging.Logger;
 
 public final class LoggingHandler implements MessageHandler<MessageHandlerContext> {
 
     public static final String EMPTY = "";
-    public static final String ENCODING = "utf-8";
+    public static final String ENCODING = StandardCharsets.UTF_8.name();
     private static final Logger LOG = Logger.getLogger(LoggingHandler.class.getName());
     private String lastSoapRequest;
     private String lastSoapResponse;
@@ -86,9 +87,9 @@ public final class LoggingHandler implements MessageHandler<MessageHandlerContex
         String soap = "";
         try {
             m.writeTo(writer);
-            soap = baos.toString(ENCODING);
+            soap = baos.toString(StandardCharsets.UTF_8);
 
-        } catch (XMLStreamException | java.io.UnsupportedEncodingException e) {
+        } catch (XMLStreamException e) {
             LOG.severe("Error logging soap message: " + e.getMessage());
         }
 

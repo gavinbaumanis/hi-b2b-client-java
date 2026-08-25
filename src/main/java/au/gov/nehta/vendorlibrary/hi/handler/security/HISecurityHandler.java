@@ -30,7 +30,6 @@ import jakarta.xml.ws.handler.soap.SOAPHandler;
 import jakarta.xml.ws.handler.soap.SOAPMessageContext;
 import java.security.PrivateKey;
 import java.security.cert.X509Certificate;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -39,8 +38,10 @@ import java.util.Set;
  * This SOAP handler constructs the Medicare HI security header elements in the
  * outgoing SOAP requests and verifies incoming SOAP Response from HI service to
  * ensure conformance to HI guidelines. If a SOAP handler is specified in the
- * handler chain of a JAX-WS client or service, JAX-WS will call the SOAP handler
- * before a SOAP message is sent and after a SOAP message has been received. <br>
+ * handler chain of a JAX-WS client or service, JAX-WS will call the SOAP
+ * handler
+ * before a SOAP message is sent and after a SOAP message has been received.
+ * <br>
  */
 public class HISecurityHandler implements SOAPHandler<SOAPMessageContext> {
 
@@ -61,7 +62,7 @@ public class HISecurityHandler implements SOAPHandler<SOAPMessageContext> {
      */
     public static final String COMMON_COREELEMENTS_NS = "http://ns.electronichealth.net.au/hi/xsd/common/CommonCoreElements/3.0";
     /**
-     * Digital Signature namespace  .
+     * Digital Signature namespace .
      */
     public static final String DIG_NS = "http://www.w3.org/2000/09/xmldsig#";
     /**
@@ -95,7 +96,8 @@ public class HISecurityHandler implements SOAPHandler<SOAPMessageContext> {
      * @param x509Certificate the certificate key to be used for signing (Mandatory)
      * @param privateKey      the private key to be used for signing (Mandatory)
      */
-    public HISecurityHandler(X509Certificate x509Certificate, PrivateKey privateKey, CertificateValidator certificateValidator) {
+    public HISecurityHandler(X509Certificate x509Certificate, PrivateKey privateKey,
+            CertificateValidator certificateValidator) {
         ArgumentUtils.checkNotNull(x509Certificate, "x509Certificate");
         ArgumentUtils.checkNotNull(privateKey, "privateKey");
         ArgumentUtils.checkNotNull(privateKey, "certificateValidator");
@@ -153,20 +155,24 @@ public class HISecurityHandler implements SOAPHandler<SOAPMessageContext> {
      * Does nothing <br>
      * Not utilised for dumping SOAP message.
      *
-     * @param context @see jakarta.xml.ws.handler.Handler#close(jakarta.xml.ws.handler.MessageContext)
+     * @param context @see
+     *                jakarta.xml.ws.handler.Handler#close(jakarta.xml.ws.handler.MessageContext)
      */
     public void close(final MessageContext context) {
-        //Do nothing
+        // Do nothing
     }
 
     /**
      * Signs the SOAP message parts matching the Medicare UHI specification. <br>
-     * The Jakarta XML Web Services runtime removes the SOAP body attribute {@code Id}. A workaround has been
+     * The Jakarta XML Web Services runtime removes the SOAP body attribute
+     * {@code Id}. A workaround has been
      * introduced to remove WSS Security Tube from the Tubeline Assembly for TLS
      * based service <br>
      *
-     * @param context of type {@link jakarta.xml.ws.handler.soap.SOAPMessageContext} (Mandatory)
-     *                returns {@link jakarta.xml.ws.handler.soap.SOAPMessageContext} with the signed SOAP element
+     * @param context of type {@link jakarta.xml.ws.handler.soap.SOAPMessageContext}
+     *                (Mandatory)
+     *                returns {@link jakarta.xml.ws.handler.soap.SOAPMessageContext}
+     *                with the signed SOAP element
      */
     private void signBodyAndSOAPHeaders(final SOAPMessageContext context) {
         ArgumentUtils.checkNotNull(context, "context");
@@ -202,7 +208,8 @@ public class HISecurityHandler implements SOAPHandler<SOAPMessageContext> {
     }
 
     /**
-     * Extracts elements from SOAP header and SOAP body and signs them abiding the Medicare Australia's Signing specification.
+     * Extracts elements from SOAP header and SOAP body and signs them abiding the
+     * Medicare Australia's Signing specification.
      *
      * @param header the SOAP header to be signed
      * @param body   the SOAP body element to be signed.
@@ -232,8 +239,8 @@ public class HISecurityHandler implements SOAPHandler<SOAPMessageContext> {
         removeXMLNS(timestampElem);
         removeXMLNS(sigElem);
 
-        //XSP-API will add the correct ID elements
-        //addSignatureReferenceId(body, timestampElem, userElem);
+        // XSP-API will add the correct ID elements
+        // addSignatureReferenceId(body, timestampElem, userElem);
         signSoapElements(timestampElem, userElem, body, sigElem);
     }
 
@@ -246,9 +253,9 @@ public class HISecurityHandler implements SOAPHandler<SOAPMessageContext> {
      * @param sigElem       the header signature element to be signed.
      * @throws XspException in an event of signature failure.
      */
-    private void signSoapElements(Element timestampElem, Element userElem, Element body, Element sigElem) throws XspException {
-        List<Element> elementsToSign = Arrays.asList(timestampElem, userElem,
-                body);
+    private void signSoapElements(Element timestampElem, Element userElem, Element body, Element sigElem)
+            throws XspException {
+        List<Element> elementsToSign = List.of(timestampElem, userElem, body);
         // Obtain the required public certificate and private key for
         // performing XML digital signing
         List<X500PrivateCredential> certificateKeyPairs = Collections.singletonList(new X500PrivateCredential(
@@ -285,7 +292,8 @@ public class HISecurityHandler implements SOAPHandler<SOAPMessageContext> {
      * The xmlns:xml namespace prefix mapping breaks the WSIT interoperability. <br>
      * Need to report to JAXWS to avoid this step.
      *
-     * @param elem {@link org.w3c.dom.Element} which contains xmlns:xml namespace prefix (Mandatory)
+     * @param elem {@link org.w3c.dom.Element} which contains xmlns:xml namespace
+     *             prefix (Mandatory)
      */
     private static void removeXMLNS(final Element elem) {
         if (elem.hasAttribute(XMLNS)) {
@@ -294,9 +302,11 @@ public class HISecurityHandler implements SOAPHandler<SOAPMessageContext> {
     }
 
     /**
-     * Verifies the signature value of the provided {@link jakarta.xml.ws.handler.soap.SOAPMessageContext}.
+     * Verifies the signature value of the provided
+     * {@link jakarta.xml.ws.handler.soap.SOAPMessageContext}.
      *
-     * @param context the MCA Inbound {@link jakarta.xml.ws.handler.soap.SOAPMessageContext}
+     * @param context the MCA Inbound
+     *                {@link jakarta.xml.ws.handler.soap.SOAPMessageContext}
      */
     private void extractElementsAndVerifyingSignature(final SOAPMessageContext context) {
         SOAPMessageContext localContext = context;
@@ -328,16 +338,16 @@ public class HISecurityHandler implements SOAPHandler<SOAPMessageContext> {
             ArgumentUtils.checkNotNull(header, "Failed to verify incoming signature. Invalid SOAP header");
             NodeList sigList = header.getElementsByTagNameNS(DIG_NS, "Signature");
 
-            //Older Java XML Parsers will not recognise the special attribute xml:id
-            //so we explicitly set the attributes where this id is known to be, to allow
-            //the signature check to dereference the ID attribute
+            // Older Java XML Parsers will not recognise the special attribute xml:id
+            // so we explicitly set the attributes where this id is known to be, to allow
+            // the signature check to dereference the ID attribute
             registerIDAttributes(header.getOwnerDocument());
-
 
             // Sign the Body , timestamp and user elements.
             // Add the signed value to signature element for remote
             // endpoint verification
-            XmlSignatureProfileService xmlSignatureProfile = XspFactory.getInstance().getXmlSignatureProfileService(XspVersion.V_2010);
+            XmlSignatureProfileService xmlSignatureProfile = XspFactory.getInstance()
+                    .getXmlSignatureProfileService(XspVersion.V_2010);
             xmlSignatureProfile.check((Element) sigList.item(0), certificateValidator);
 
         } catch (Exception ex) {
@@ -347,7 +357,8 @@ public class HISecurityHandler implements SOAPHandler<SOAPMessageContext> {
     }
 
     private void registerIDAttributes(Document doc) {
-        NodeList bodyTags = doc.getDocumentElement().getElementsByTagNameNS("http://www.w3.org/2003/05/soap-envelope", "Body");
+        NodeList bodyTags = doc.getDocumentElement().getElementsByTagNameNS("http://www.w3.org/2003/05/soap-envelope",
+                "Body");
         for (int i = 0; i < bodyTags.getLength(); i++) {
             Element element = (Element) bodyTags.item(i);
             Attr xmlid = element.getAttributeNode("xml:id");

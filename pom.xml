@@ -9,7 +9,7 @@
 
     <groupId>au.gov.nehta</groupId>
     <artifactId>hi-b2b-client</artifactId>
-    <version>11.0.0.1-SNAPSHOT</version>
+    <version>11.0.0-SNAPSHOT</version>
     <name>HI B2B client</name>
     <description>Example client implementations of Healthcare Identifiers (HI) service</description>
     <url>https://github.com/AuDigitalHealth/hi-b2b-client-java</url>
@@ -17,7 +17,7 @@
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
@@ -27,8 +27,8 @@
             <name>Admin Open Source</name>
             <email>admin.opensource@digitalhealth.gov.au</email>
             <organization>Australian Digital Health Agency</organization>
-            <url>www.digitalhealth.gov.au</url>
-            <organizationUrl>www.digitalhealth.gov.au</organizationUrl>
+            <url>https://www.digitalhealth.gov.au/</url>
+            <organizationUrl>https://www.digitalhealth.gov.au/</organizationUrl>
             <roles>
                 <role>Admin</role>
             </roles>
@@ -65,8 +65,9 @@
         <gpg.skip>true</gpg.skip>
         <plugin.deploy.version>3.1.4</plugin.deploy.version>
         <plugin.release.version>3.3.1</plugin.release.version>
-        <plugin.central.publishing.version>0.9.0</plugin.central.publishing.version>
+        <plugin.central.publishing.version>0.11.0</plugin.central.publishing.version>
         <plugin.gpg.version>3.2.8</plugin.gpg.version>
+        <plugin.surefire.version>3.5.6</plugin.surefire.version>
         <!-- SCM / maven-release-plugin (scm.repo.url is the only repo-specific Git value) -->
         <scm.repo.url>https://github.com/AuDigitalHealth/hi-b2b-client-java.git</scm.repo.url>
         <scm.tag>HEAD</scm.tag>
@@ -79,18 +80,19 @@
         <release.remoteTagging>true</release.remoteTagging>
         <release.scmCommentPrefix>[maven-release-plugin] </release.scmCommentPrefix>
         <!-- Eclipse EE4J XML Web Services: align jaxws-rt / jaxws-tools. jaxws-maven-plugin 4.0.3+ requires JDK 17 to run wsimport - keep plugin at 4.0.2 on JDK 11. -->
-        <jaxws.rt.version>4.0.4</jaxws.rt.version>
+        <jaxws.rt.version>4.0.5</jaxws.rt.version>
         <jaxws.maven.plugin.version>4.0.2</jaxws.maven.plugin.version>
         <!-- wsimport/XJC 4.0.7+ writes schema-fragment Javadoc that Maven Javadoc accepts. Pin jaxb-xjc on jaxws-maven-plugin. Align with hi-wsdl at ${project.version}. -->
         <jaxb.xjc.version>4.0.9</jaxb.xjc.version>
         <!-- GMavenPlus build scripts only (`groovy` + `groovy-ant` on the plugin classpath; not compile deps of the published JAR). -->
-        <groovy.version>4.0.32</groovy.version>
+        <groovy.version>4.0.33</groovy.version>
         <!-- Default: in-repo wsimport (26 services, licensed tree under wsdls/xml). Alternative: -Phi-wsdl-artifact (au.gov.nehta:hi-wsdl, skips wsimport). -->
         <hi.wsdl.codegen.skip>false</hi.wsdl.codegen.skip>
         <!-- Build-time WSDL root: override with -Dhi.wsdl.tree.root or env HI_WSDL_TREE_ROOT (GMavenPlus initialize resolves settings.xml too). -->
         <hi.wsdl.tree.root>${project.basedir}/wsdls/xml</hi.wsdl.tree.root>
-        <!-- au.gov.nehta:hi-wsdl (Java 11 / Jakarta); used by -Phi-wsdl-artifact -->
+        <!-- au.gov.nehta:hi-wsdl and sibling libs (Java 11 / Jakarta). Same Maven version as this artifact. -->
         <hi.wsdl.version>${project.version}</hi.wsdl.version>
+        <nehta.xsp.lib.version>${project.version}</nehta.xsp.lib.version>
         <maven.shade.plugin.version>3.6.2</maven.shade.plugin.version>
     </properties>
 
@@ -99,7 +101,7 @@
         <dependency>
             <groupId>au.gov.nehta</groupId>
             <artifactId>smi-xsp</artifactId>
-            <version>1.2.1</version>
+            <version>${nehta.xsp.lib.version}</version>
         </dependency>
         <!-- Eclipse EE4J XML Web Services reference implementation (Jakarta XML Web Services). -->
         <dependency>
@@ -116,7 +118,7 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>2.2.224</version>
+            <version>2.4.240</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -249,7 +251,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.5</version>
+                <version>${plugin.surefire.version}</version>
                 <configuration>
                     <skipTests>${skipTests}</skipTests>
                     <encoding>UTF-8</encoding>
@@ -262,6 +264,7 @@
                         <include>**/JdbcTransactionTestRuleTest.java</include>
                         <include>**/HiWsdlArtifactRootTest.java</include>
                         <include>**/HiWsdlArtifactSmokeTest.java</include>
+                        <include>**/HiFacadeCoverageTest.java</include>
                         <include>**/HiRequestElementOrderParityTest.java</include>
                         <include>**/ConsumerSearchIHIClientArgumentValidatorTest.java</include>
                     </includes>

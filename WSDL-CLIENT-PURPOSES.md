@@ -9,7 +9,7 @@ Cross-repo reference for **Healthcare Identifiers (HI)** and **My Health Record 
 | **Identifiers handled** | IHI, HPI-I, HPI-O | Individual myHR record (IHI as context in headers, not managed here) |
 | **Typical use** | Look up / validate / manage healthcare identifiers | Access record, register consumer, upload/retrieve documents, read views |
 | **Service WSDLs codegen'd** | **26** (+ paired `*Interface` WSDLs in licensed bundle) | **12** `B2B_*` services |
-| **Facade classes** | **26** in **`11.0.0.1`**; **14** in **`8.0.0.1`** |
+| **Facade classes** | **26** in **`11.0.0`**; **14** in **`8.0.0`** |
 | **Maven artifact** | `au.gov.nehta:hi-b2b-client` | `au.gov.nehta:mhr-b2b-client` |
 
 Apps needing both depend on **two libraries**. HI-only detail: **`CLIENT-FEATURES.md`** in this repo. MHR third-party scope: **`ADHA-THIRD-PARTY-SCOPE.md`** in `mhr-b2b-client-java`. Three-client matrix: **`WSDL-CLIENT-PURPOSES.md`** in `myhr-b2b-client-java`.
@@ -20,25 +20,25 @@ Apps needing both depend on **two libraries**. HI-only detail: **`CLIENT-FEATURE
 
 Grouped by **client purpose**. WSDL filenames in the licensed bundle include version suffixes (e.g. `HI_ConsumerSearchIHI-3.0.wsdl`); logical names below omit versions.
 
-| Purpose | WSDL service | What it does | Java facade | In **`8.0.0.1`** (14 facades) |
+| Purpose | WSDL service | What it does | Java facade | In **`8.0.0`** (14 facades) |
 |---|---|---|---|:---:|
 | **IHI - search** | `HI_ConsumerSearchIHI` | Find/validate an individual's IHI (by IHI, Medicare, DVA, or demographics) | `ConsumerSearchIHIClient` | Yes |
 | **IHI - batch search** | `HI_ConsumerSearchIHIBatchSync` | Synchronous batch IHI search | `ConsumerSearchIHIBatchSyncClient` | Yes |
-| **IHI - batch search** | `HI_ConsumerSearchIHIBatchAsync` | Submit/retrieve async batch IHI search | `ConsumerSearchIHIBatchAsyncClient` | **`11.0.0.1` only** |
-| **IHI - create** | `HI_ConsumerCreateProvisionalIHI` | Create provisional IHI | `ConsumerCreateProvisionalIHIClient` | **`11.0.0.1` only** |
-| **IHI - update** | `HI_ConsumerUpdateProvisionalIHI` | Update provisional IHI | `ConsumerUpdateProvisionalIHIClient` | **`11.0.0.1` only** |
-| **IHI - merge** | `HI_ConsumerMergeProvisionalIHI` | Merge provisional IHIs | `ConsumerMergeProvisionalIHIClient` | **`11.0.0.1` only** |
-| **IHI - resolve** | `HI_ConsumerResolveProvisionalIHI` | Resolve provisional IHI | `ConsumerResolveProvisionalIHIClient` | **`11.0.0.1` only** |
-| **IHI - create** | `HI_ConsumerCreateUnverifiedIHI` | Create unverified IHI | `ConsumerCreateUnverifiedIHIClient` | **`11.0.0.1` only** |
-| **IHI - create** | `HI_ConsumerCreateVerifiedIHI` | Create verified IHI | `ConsumerCreateVerifiedIHIClient` | **`11.0.0.1` only** |
-| **IHI - update** | `HI_ConsumerUpdateIHI` | Update IHI details | `ConsumerUpdateIHIClient` | **`11.0.0.1` only** |
-| **IHI - notify** | `HI_ConsumerNotifyDuplicateIHI` | Notify duplicate IHI | `ConsumerNotifyDuplicateIHIClient` | **`11.0.0.1` only** |
-| **IHI - notify** | `HI_ConsumerNotifyReplicaIHI` | Notify replica IHI | `ConsumerNotifyReplicaIHIClient` | **`11.0.0.1` only** |
+| **IHI - batch search** | `HI_ConsumerSearchIHIBatchAsync` | Submit/retrieve async batch IHI search | `ConsumerSearchIHIBatchAsyncClient` | **`11.0.0` only** |
+| **IHI - create** | `HI_ConsumerCreateProvisionalIHI` | Create provisional IHI | `ConsumerCreateProvisionalIHIClient` | **`11.0.0` only** |
+| **IHI - update** | `HI_ConsumerUpdateProvisionalIHI` | Update provisional IHI | `ConsumerUpdateProvisionalIHIClient` | **`11.0.0` only** |
+| **IHI - merge** | `HI_ConsumerMergeProvisionalIHI` | Merge provisional IHIs | `ConsumerMergeProvisionalIHIClient` | **`11.0.0` only** |
+| **IHI - resolve** | `HI_ConsumerResolveProvisionalIHI` | Resolve provisional IHI | `ConsumerResolveProvisionalIHIClient` | **`11.0.0` only** |
+| **IHI - create** | `HI_ConsumerCreateUnverifiedIHI` | Create unverified IHI | `ConsumerCreateUnverifiedIHIClient` | **`11.0.0` only** |
+| **IHI - create** | `HI_ConsumerCreateVerifiedIHI` | Create verified IHI | `ConsumerCreateVerifiedIHIClient` | **`11.0.0` only** |
+| **IHI - update** | `HI_ConsumerUpdateIHI` | Update IHI details | `ConsumerUpdateIHIClient` | **`11.0.0` only** |
+| **IHI - notify** | `HI_ConsumerNotifyDuplicateIHI` | Notify duplicate IHI | `ConsumerNotifyDuplicateIHIClient` | **`11.0.0` only** |
+| **IHI - notify** | `HI_ConsumerNotifyReplicaIHI` | Notify replica IHI | `ConsumerNotifyReplicaIHIClient` | **`11.0.0` only** |
 | **HPI-I - search** | `HI_ProviderSearchForProviderIndividual` | Search provider individual (HPI-I) | `ProviderSearchForProviderIndividualClient` | Yes |
 | **HPI-I - directory search** | `HI_ProviderSearchHIProviderDirectoryForIndividual` | Search HI provider directory for individual | `ProviderSearchHIProviderDirectoryForIndividualClient` | Yes |
 | **HPI-I - batch search** | `HI_ProviderBatchAsyncSearchForProviderIndividual` | Async batch search for provider individual | `SearchForProviderIndividualBatchAsyncClient` | Yes |
-| **HPI-I - TDS search** | `HI_ProviderSearchTdsProviderIndividual` | Search TDS provider individual | `ProviderSearchTdsProviderIndividualClient` | **`11.0.0.1` only** |
-| **HPI-I - TDS manage** | `HI_ProviderManageTdsProviderIndividual` | Manage TDS provider individual | `ProviderManageTdsProviderIndividualClient` | **`11.0.0.1` only** |
+| **HPI-I - TDS search** | `HI_ProviderSearchTdsProviderIndividual` | Search TDS provider individual | `ProviderSearchTdsProviderIndividualClient` | **`11.0.0` only** |
+| **HPI-I - TDS manage** | `HI_ProviderManageTdsProviderIndividual` | Manage TDS provider individual | `ProviderManageTdsProviderIndividualClient` | **`11.0.0` only** |
 | **HPI-O - search** | `HI_ProviderSearchForProviderOrganisation` | Search provider organisation (HPI-O) | `ProviderSearchForProviderOrganisationClient` | Yes |
 | **HPI-O - directory search** | `HI_ProviderSearchHIProviderDirectoryForOrganisation` | Search HI provider directory for organisation | `ProviderSearchHIProviderDirectoryForOrganisationClient` | Yes |
 | **HPI-O - batch search** | `HI_ProviderBatchAsyncSearchForProviderOrganisation` | Async batch search for organisation | `SearchForProviderOrganisationBatchAsyncClient` | Yes |
@@ -52,7 +52,7 @@ Grouped by **client purpose**. WSDL filenames in the licensed bundle include ver
 **Notes**
 
 - Each service WSDL has a paired `*Interface` WSDL in the licensed bundle; facades bind to the service WSDL.
-- **`11.0.0.1`** exposes all **26** rows above. **`8.0.0.1`** exposes the rows marked **Yes** in the last column only.
+- **`11.0.0`** exposes all **26** rows above. **`8.0.0`** exposes the rows marked **Yes** in the last column only.
 
 ---
 

@@ -52,29 +52,20 @@ public final class KeystoreUtil {
 
     public static KeyStore loadKeyStore(final String keystoreType, final String keystorePassword,
                                         final String keystorePathname) throws GeneralSecurityException {
-        KeyStore keystore;
-        InputStream in = null;
         ArgumentUtils.checkNotNullNorBlank(keystoreType, "keystoreType");
         ArgumentUtils.checkNotNullNorBlank(keystorePassword, "keystorePassword");
         ArgumentUtils.checkNotNullNorBlank(keystorePathname, "keystorePathname");
         try {
-            keystore = KeyStore.getInstance(keystoreType);
-
+            KeyStore keystore = KeyStore.getInstance(keystoreType);
             File store = new File(keystorePathname);
-            if (store.exists()) {
-                in = new FileInputStream(keystorePathname);
-            } else {
-                in = null;
-            }
-
-            keystore.load(in, keystorePassword.toCharArray());
-            if (in != null) {
-                in.close();
-                in = null;
-            } else {
+            if (!store.exists()) {
                 throw new FileNotFoundException("File not found " + keystorePathname);
             }
+            try (InputStream in = new FileInputStream(store)) {
+                keystore.load(in, keystorePassword.toCharArray());
+            }
             LOG.info("Keystore " + keystorePathname + " loaded");
+            return keystore;
         } catch (KeyStoreException e) {
             throw new GeneralSecurityException("getInstance(" + keystoreType + ") error", e);
         } catch (FileNotFoundException ex) {
@@ -83,16 +74,7 @@ public final class KeystoreUtil {
             throw new GeneralSecurityException(ex.getMessage(), ex);
         } catch (CertificateException ex) {
             throw new GeneralSecurityException("Certificate error", ex);
-        } finally {
-            try {
-                if (in != null) {
-                    in.close();
-                }
-            } catch (IOException ex) {
-                throw new GeneralSecurityException(ex.getMessage(), ex);
-            }
         }
-        return keystore;
     }
 
     public static X509Certificate getSigningCertificate(final String keystoreType, final String keystorePassword,
